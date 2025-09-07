@@ -11,4 +11,8 @@ As of now he can Speak and even introduce himself! and much more in the future!
 4. download and install "TTS TruVoice di Lernout & Hauspie".
 5. go into "C:\Program Files\bonzibuddy renewed" and execute the "launch.bat".
 
+# anvitiruses
+
+For some reason this project gets flagged by a decent amount of antivuruses and antiviruses engines. I assume because their matching similarities to bonzibuddy. I'll try my best to fix this in future updates.
+
 Hope you'll like this project!
