@@ -1,2 +1,14 @@
 # BonziBuddy_RENEWED
-Welcome to BonziBuddy RENEWED! This is BonziBuddy built from the ground up, malware-free and with more features than the original one! as of now its pretty basic but every release it will get better until it will superceed the original bonzi, so don't expect anything special to the prerelease updates!
+Welcome to BonziBuddy RENEWED! BonziBuddy RENEWED is a built from the ground up malware-free version of the BonziBuddy also aiming to include more features than the original one. As of now it's still in it's early stages so it hasn't got much features but in each release ill stuff in some features. Also i'll work on this project in my free time so don't expect super frequent releases.
+
+As of now he can Speak and even introduce himself! and much more in the future!
+
+# How to install
+
+1. drag the "bonzibuddy renewed" folder in your "C:\Program Files" folder.
+2. download and install "msagent" (unless your on windows xp wich has it preinstalled).
+3. download the "bonzibuddy.acs" file from the internet and put it onto "C:\Windows\msagent\chars".
+4. download and install "TTS TruVoice di Lernout & Hauspie".
+5. go into "C:\Program Files\bonzibuddy renewed" and execute the "launch.bat".
+
+Hope you'll like this project!
