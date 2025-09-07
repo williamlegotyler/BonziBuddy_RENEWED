@@ -1,5 +1,5 @@
 # BonziBuddy_RENEWED
-Welcome to BonziBuddy RENEWED! BonziBuddy RENEWED is a built from the ground up malware-free version of the BonziBuddy also aiming to include more features than the original one. As of now it's still in it's early stages so it hasn't got much features but in each release ill stuff in some features. Also i'll work on this project in my free time so don't expect super frequent releases.
+Welcome to BonziBuddy RENEWED! BonziBuddy RENEWED is a built from the ground up (using primarly MASH, vbscript and batch file) malware-free version of the BonziBuddy also aiming to include more features than the original one. As of now it's still in it's early stages so it hasn't got much features but in each release ill stuff in some features. Also i'll work on this project in my free time so don't expect super frequent releases.
 
 As of now he can Speak and even introduce himself! and much more in the future!
 
