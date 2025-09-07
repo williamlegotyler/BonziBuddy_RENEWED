@@ -13,6 +13,6 @@ As of now he can Speak and even introduce himself! and much more in the future!
 
 # anvitiruses
 
-For some reason this project gets flagged by a decent amount of antivuruses and antiviruses engines. I assume because the script isn't the most organized so im using a bunch or external scripts to interact with the main MASH script so this behaviour may get detected as malware. I'll try my best to fix this in future updates.
+For some reason this project gets flagged by a decent amount of antiviruses and antiviruses engines. I assume because the script isn't the most organized so im using a bunch or external scripts to interact with the main MASH script so this behaviour may get detected as malware. I'll try my best to fix this in future updates.
 
 Hope you'll like this project!
