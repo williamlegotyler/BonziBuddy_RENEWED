@@ -26,5 +26,5 @@ Set objTSO = objFSO.CreateTextFile(outputFilePath, True) ' True = Overwrite
 objTSO.WriteLine(strRandomJoke)
 objTSO.Close
 
-wscript.sleep 1000
+Wscript.sleep 1000
 x.run "joke.exe"
