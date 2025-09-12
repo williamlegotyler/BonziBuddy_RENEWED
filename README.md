@@ -22,4 +22,5 @@ Here are the things i currently need for the project that im stuck on:
 -Fixing the mash script reading the previous joke instead of the new one (to fix this one i tiugh about including the function directly to the mash script, but because of mash's little documentation i can't find a way to.)
 
 If you know any of these please make a pull request! ill include your credit too!
+
 Hope you'll like this project!
