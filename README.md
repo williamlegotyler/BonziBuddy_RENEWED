@@ -20,8 +20,8 @@ For some reason this project gets flagged by a decent amount of antiviruses and 
 
 Here are the things i currently need for the project that im stuck on:
 
--Fixing the mash script reading the previous joke instead of the new one (to fix this one i tough about including the function directly to the mash script, but because of mash's little documentation i can't find a way to.)
+-Fixing the mash script reading the previous joke instead of the new one (to fix this one i tought about including the function directly to the mash script, but because of mash's little documentation i can't find a way to.)
 
-If you know any of these please make a pull request! ill include your credit too!
+If you know any of these please make a pull request! i'll include your credit too!
 
 Hope you'll like this project!
