@@ -14,7 +14,7 @@ As of now he can Speak, Tell jokes and even introduce himself! and much more in 
 
 # Anvitiruses
 
-For some reason this project gets flagged by a decent amount of antiviruses and antiviruses engines. I assume because the script isn't the most organized so im using a bunch or external scripts to interact with the main MASH script so this behaviour may get detected as malware. I'll try my best to fix this in future updates.
+For some reason this project gets flagged by a decent amount of antiviruses and antiviruses engines. I assume because the script isn't the most organized so im using a bunch of external scripts to interact with the main MASH script so this behaviour may get detected as malware. I'll try my best to fix this in future updates.
 
 # Wanna help out?
 
