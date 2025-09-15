@@ -7,7 +7,7 @@ As of now he can Speak, Tell jokes and even introduce himself! and much more in 
 # How to install
 
 1. drag the "bonzibuddy renewed" folder in your "C:\Program Files" folder.
-2. download and install "msagent" (unless your on windows xp wich has it preinstalled).
+2. download and install "double agent" (unless your on windows xp wich has got the original "msagent").
 3. download the "bonzi.acs" file from the internet and put it onto "C:\Windows\msagent\chars".
 4. download and install "TTS TruVoice di Lernout & Hauspie".
 5. go into "C:\Program Files\bonzibuddy renewed" and execute the "launch.bat".
