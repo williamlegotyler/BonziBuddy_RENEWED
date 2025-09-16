@@ -16,12 +16,4 @@ As of now he can Speak, Tell jokes and even introduce himself! and much more in 
 
 For some reason this project gets flagged by a decent amount of antiviruses and antiviruses engines. I assume because the script isn't the most organized so im using a bunch of external scripts to interact with the main MASH script so this behaviour may get detected as malware. I'll try my best to fix this in future updates.
 
-# Wanna help out?
-
-Here are the things i currently need for the project that im stuck on:
-
--Fixing the mash script reading the previous joke instead of the new one (to fix this one i tought about including the function directly to the mash script, but because of mash's little documentation i can't find a way to.)
-
-If you know any of these please make a pull request! i'll include your credit too!
-
 Hope you'll like this project!
