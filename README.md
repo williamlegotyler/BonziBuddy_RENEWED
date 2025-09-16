@@ -8,12 +8,16 @@ As of now he can Speak, Tell jokes and even introduce himself! and much more in 
 
 1. drag the "bonzibuddy renewed" folder in your "C:\Program Files" folder.
 2. download and install "double agent" (unless your on windows xp wich has got the original "msagent").
-3. download the "bonzi.acs" file from the internet and put it onto "C:\Windows\msagent\chars" (msagent), "C:\Program Files\Double Agent\chars" (double agent).
+3. go onto the "install dependencies" folder and run the "install dependencies.bat" and then follow the instructions there.
 4. download and install "TTS TruVoice di Lernout & Hauspie".
 5. go into "C:\Program Files\bonzibuddy renewed" and execute the "launch.bat".
 
 # Anvitiruses
 
 For some reason this project gets flagged by a decent amount of antiviruses and antiviruses engines. I assume because the script isn't the most organized so im using a bunch of external scripts to interact with the main MASH script so this behaviour may get detected as malware. I'll try my best to fix this in future updates.
+
+# Running on newer windows versions
+
+As of now still didn't test on modern windows versions, this is developed and tested under windows xp but i can expect what would happen when running it on modern windows: it would be pretty broken as of now. Because modern windows has got UAC and other stuff wich as of now does not provide a flawless experience. So expect this to be able to run flawlessly on modern windows at around version 0.2.0.
 
 Hope you'll like this project!
