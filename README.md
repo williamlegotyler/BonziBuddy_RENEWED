@@ -18,6 +18,6 @@ For some reason this project gets flagged by a decent amount of antiviruses and 
 
 # Running on newer windows versions
 
-As of now still didn't test on modern windows versions, this is developed and tested under windows xp but i can expect what would happen when running it on modern windows: it would be pretty broken as of now. Because modern windows has got UAC and other stuff wich as of now does not provide a flawless experience. So expect this to be able to run flawlessly on modern windows at around version 0.2.0.
+As of now still didn't test on modern windows versions, this is developed and tested under windows xp but i can expect what would happen when running it on modern windows: it would be pretty broken as of now. Because modern windows has got UAC and other stuff which as of now does not provide a flawless experience. So expect this to be able to run flawlessly on modern windows at around version 0.2.0.
 
 Hope you'll like this project!
