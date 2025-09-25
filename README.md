@@ -6,10 +6,10 @@ As of now he can Speak, Tell jokes and even introduce himself! and much more in 
 
 # How to install
 
-1. drag the "bonzibuddy renewed" folder in your "C:\Program Files" folder.
-2. go onto the "install dependencies" folder and run the "install dependencies.bat" and then follow the instructions there.
+1. Run the "setup.exe" installer and follow the setup wizard.
+2. At the end of the setup it will open a folder and you must run the "dependency installer.bat" file and follow instructions there aswell.
 3. download and install "TTS TruVoice di Lernout & Hauspie".
-4. go into "C:\Program Files\bonzibuddy renewed" and execute the "launch.bat".
+4. go onto your desktop and launch the "bonzibuddy renewed" icon.
 
 # Anvitiruses
 
