@@ -2,6 +2,7 @@
 [Setup]
 AppName=Bonzibuddy RENEWED
 AppVersion=0.1.2
+AppPublisher=William Tyler (William_Tyler)
 DefaultDirName={pf}\bonzibuddy renewed
 DisableProgramGroupPage=yes
 UninstallDisplayIcon={app}\launch.bat
@@ -34,4 +35,5 @@ Name: "{userappdata}\bonzibuddy renewed"
 Name: "{commondesktop}\bonzibuddy renewed"; Filename: "{app}\launch.bat"
 
 [Run]
+
 Filename: "{app}\install dependencies"; Flags: shellexec postinstall skipifsilent
