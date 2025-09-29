@@ -1,0 +1,25 @@
+[MASH Script]
+Version=7.5
+
+[Characters]
+Bonzi=Bonzi.acs
+
+[LanguageIDs]
+Bonzi=&H409
+
+[Script]
+Bonzi.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273001}"
+Bonzi.Show
+ReadTextFile "Bonzi" ,"%appdata%\bonzibuddy renewed\username.txt"
+Bonzi.Play "Write"
+Bonzi.Play "WriteReturn"
+Bonzi.Speak "Since this is the first time we've met, I'd like to tell you a little about myself."
+Bonzi.Speak "I am your friend and BonziBUDDY renewed! aiming to be better than the original one and especially...being free of malware! as of now my capabilities are very limited, but as the time goes on ill catch up on my original one and get even better! So don't be afraid to update me!"
+Bonzi.Play "PleasedSoft"
+
+[Commands]
+MenuName=MASH Menu
+ACO=Advanced Character Options|~|Advanced Character Options
+
+[CommandScript:ACO]
+AgentControl.PropertySheet.Visible = True
