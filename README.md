@@ -13,6 +13,6 @@ As of now he can Speak, Tell Jokes, Tell Amazing Facts, Browse and even introduc
 
 # Anvitiruses
 
-For some reason this project gets flagged by a decent amount of antiviruses and antiviruses engines. I assume because the script isn't the most organized so im using a bunch of external scripts to interact with the main MASH script so this behaviour may get detected as malware. I'll try my best to fix this in future updates.
+For some reason this project gets flagged by a decent amount of antiviruses and antiviruses engines. I assume because some of the files inside are packed (the executables) so antiviruses get triggered because the executables are packed, go check the source code if your unsure. I'll try my best to fix this in future updates.
 
 Hope you'll like this project!
