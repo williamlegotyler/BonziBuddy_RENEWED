@@ -8,8 +8,7 @@ As of now he can Speak, Tell Jokes, Tell Amazing Facts, Browse and even introduc
 # How to install
 
 1. Run the "setup.exe" installer and follow the setup wizard.
-2. At the end of the setup it will open a folder and you must run the "dependency installer.bat" file and follow instructions there.
-4. go onto your desktop and launch the "bonzibuddy renewed" icon.
+2. Go onto your desktop and launch the "bonzibuddy renewed" icon.
 
 # Anvitiruses
 
