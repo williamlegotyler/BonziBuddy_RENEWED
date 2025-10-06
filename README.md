@@ -9,9 +9,3 @@ As of now he can Speak, Tell Jokes, Tell Amazing Facts, Browse and even introduc
 
 1. Run the "setup.exe" installer and follow the setup wizard.
 2. Go onto your desktop and launch the "bonzibuddy renewed" icon.
-
-# Anvitiruses
-
-For some reason this project gets flagged by a decent amount of antiviruses and antiviruses engines. I assume because some of the files inside are packed (the executables) so antiviruses get triggered because the executables are packed, go check the source code if your unsure. I'll try my best to fix this in future updates.
-
-Hope you'll like this project!
