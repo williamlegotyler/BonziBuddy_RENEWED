@@ -9,3 +9,11 @@ As of now he can Speak, Tell Jokes, Tell Amazing Facts, Browse, Sing Songs and e
 
 1. Run the "setup.exe" installer and follow the setup wizard.
 2. Go onto your desktop and launch the "bonzibuddy renewed" icon.
+
+# Compatibility
+For compatibility i specifically target these systems:
+
+- # Windows 2000 (Tested, works).
+- # Windows xp (Tested, works).
+- # Windows 7 (Tested, works with some problems although can be fixed with patches).
+- # Windows 10 (Tested, works but with some problems although can be fixed with patches).
