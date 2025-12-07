@@ -197,7 +197,7 @@ Sub AgentIntro()
     Bonzi.Speak "I don't believe we've been properly introduced."
     Bonzi.Play "Greet"
     Bonzi.Speak "I'm Bonzi!"
-    Bonzi.Plsy "GreetReturn"
+    Bonzi.Play "RestPose"
     Bonzi.Speak "What is your name?"
     Wscript.sleep 13000
     a = InputBox("Enter your Name or Salutation.", "Bonzibuddy renewed")
@@ -224,4 +224,5 @@ Sub AgentIntro()
 Do
     WScript.Sleep 1000
 Loop Until ScriptComplete
+
 End Sub
