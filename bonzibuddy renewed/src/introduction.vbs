@@ -206,15 +206,15 @@ Sub AgentIntro()
     path=x.SpecialFolders("appdata") & "\bonzibuddy renewed\username.txt"
     Set textfile=fso.CreateTextFile(path, True)
 
-    textFile.WriteLine("Nice to meet you, " & a & "!")
+    textFile.WriteLine(a)
     Wscript.sleep 1000
     Set WshShell = CreateObject("WScript.Shell")
     Set FSO = CreateObject("Scripting.FileSystemObject")
 
-    filePath = WshShell.ExpandEnvironmentStrings("%APPDATA%") & "\bonzibuddy renewed\username.txt"
-
-    filetext = FSO.OpenTextFile(filePath, 1).ReadAll
-    Bonzi.Speak FileText
+    name = FSO.OpenTextFile(path, 1).ReadAll
+    name = Replace(name, Chr(10), "")
+    name = Replace(name, Chr(13), "")
+    Bonzi.Speak "Nice to meet you, " & name & "!"
     Bonzi.Play "Write"
     Bonzi.Play "WriteReturn"
     Bonzi.Speak "Since this is the first time we've met, I'd like to tell you a little about myself."
