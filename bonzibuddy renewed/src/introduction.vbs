@@ -24,6 +24,7 @@ BonziACS = "bonzi.acs"
 BonziLoaded = False
 
 ScriptComplete = False
+Continue = False
 
 Call Main
 
@@ -109,6 +110,11 @@ Sub AgentControl_RequestComplete(ByVal RequestObject)
     Else
         AgentControl.Characters.Unload BonziID
         ScriptComplete = True
+    End If
+
+    If RequestObject <> ContinueReq Then
+        Continue = True
+
     End If
 End Sub
 
@@ -198,8 +204,10 @@ Sub AgentIntro()
     Bonzi.Play "Greet"
     Bonzi.Speak "I'm Bonzi!"
     Bonzi.Play "RestPose"
-    Bonzi.Speak "What is your name?"
-    Wscript.sleep 13000
+    Set ContinueReq = Bonzi.Speak("What is your name?")
+    Do
+        WScript.Sleep 999
+    Loop Until Continue
     a = InputBox("Enter your Name or Salutation.", "Bonzibuddy renewed")
 
     Set fso = CreateObject("Scripting.FileSystemObject")
@@ -224,5 +232,4 @@ Sub AgentIntro()
 Do
     WScript.Sleep 1000
 Loop Until ScriptComplete
-
 End Sub
