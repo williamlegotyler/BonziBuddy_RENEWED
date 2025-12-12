@@ -208,6 +208,7 @@ Sub AgentIntro()
     Do
         WScript.Sleep 999
     Loop Until Continue
+    Continue = False
     a = InputBox("Enter your Name or Salutation.", "Bonzibuddy renewed")
 
     Set fso = CreateObject("Scripting.FileSystemObject")
@@ -228,8 +229,13 @@ Sub AgentIntro()
     Bonzi.Speak "Since this is the first time we've met, I'd like to tell you a little about myself."
     Bonzi.Speak "I am your friend and BonziBUDDY renewed! aiming to be better than the original one and especially...being free of malware! as of now my capabilities are very limited, but as the time goes on ill catch up on my original one and get even better! So don't be afraid to update me!"
     Bonzi.Play "PleasedSoft"
-    Set HideReq = Bonzi.Hide 
-Do
-    WScript.Sleep 1000
-Loop Until ScriptComplete
+    Set ContinueReq = Bonzi.Speak("\mrk=999999999\")
+    Do
+        WScript.Sleep 999
+    Loop Until Continue
+    x.run "main.vbs"
+
+    Wscript.sleep 1000
+    AgentControl.Characters.Unload BonziID
+
 End Sub

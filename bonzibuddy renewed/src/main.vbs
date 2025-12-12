@@ -185,7 +185,7 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Play "Search"
         Case "Speak"
             speaktext=inputbox("Enter what you want me to speak.", "bonzibuddy renewed")
-            Wscript.sleep 498
+            Wscript.sleep 400
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
             factpath=objFSO.GetParentFolderName(WScript.ScriptFullName) & "\facts.txt"
@@ -228,8 +228,11 @@ Sub AgentIntro()
     ' *** BEGIN MASH USER SCRIPT ***
 
     Bonzi.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273001}"
-    Bonzi.Show
-
+    If Not Bonzi.Visible Then
+        Bonzi.Show 
+    else 
+        Bonzi.Activate
+    End If
 
     ' *** END MASH USER SCRIPT ***
 
