@@ -5,11 +5,6 @@ As of now he can Speak, Tell Jokes, Tell Amazing Facts, Browse, Sing Songs and e
 
 <img width="384" height="320" alt="Video Guru_20251114_161046966_002" src="https://github.com/user-attachments/assets/d26ad7d9-d465-41ed-9afa-b87d764f3e3e" />
 
-# How to install
-
-1. Run the "setup.exe" installer and follow the setup wizard.
-2. Go onto your desktop and launch the "bonzibuddy renewed" icon.
-
 # Compatibility
 For compatibility i specifically target these systems:
 
