@@ -185,7 +185,7 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Play "Search"
         Case "Speak"
             speaktext=inputbox("Enter what you want me to speak.", "bonzibuddy renewed")
-            Wscript.sleep 400
+            Wscript.sleep 300
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
             factpath=objFSO.GetParentFolderName(WScript.ScriptFullName) & "\facts.txt"
@@ -230,6 +230,14 @@ Sub AgentIntro()
     Bonzi.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273001}"
     If Not Bonzi.Visible Then
         Bonzi.Show 
+        path=x.SpecialFolders("appdata") & "\bonzibuddy renewed\username.txt"
+        Set WshShell = CreateObject("WScript.Shell")
+        Set FSO = CreateObject("Scripting.FileSystemObject")
+
+        name = FSO.OpenTextFile(path, 1).ReadAll
+        name = Replace(name, Chr(10), "")
+        name = Replace(name, Chr(13), "")
+        Bonzi.Speak "Nice to see you again, " & name & "!"
     else 
         Bonzi.Activate
     End If
