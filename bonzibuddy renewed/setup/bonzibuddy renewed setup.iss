@@ -1,7 +1,7 @@
 [Setup]
 AppName=Bonzibuddy RENEWED
 AppPublisher=William Tyler (William_Tyler)
-AppVersion=0.1.6b
+AppVersion=0.1.7
 AppId={{D7FCEF36-EA7F-4265-868B-3AC766F8FFA6}}
 DefaultDirName={pf}\bonzibuddy renewed
 DisableProgramGroupPage=yes
@@ -25,13 +25,14 @@ begin
 end;
 
 [Files]
-Source: "C:\Documents and Settings\williamtyler\Desktop\main016\BonziBuddy_RENEWED-main\bonzibuddy renewed\src\*"; DestDir: "{app}"; Flags: recursesubdirs;
-Source: "C:\Documents and Settings\williamtyler\Desktop\main016\BonziBuddy_RENEWED-main\bonzibuddy renewed\data\*"; DestDir: "{userappdata}\bonzibuddy renewed"
-Source: "C:\Documents and Settings\williamtyler\Desktop\main016\BonziBuddy_RENEWED-main\bonzibuddy renewed\dependencies\*"; DestDir: "{tmp}"; Flags: deleteafterinstall; Excludes: Bonzi.acs
-Source: "C:\Documents and Settings\williamtyler\Desktop\main016\BonziBuddy_RENEWED-main\bonzibuddy renewed\dependencies\Bonzi.acs"; DestDir: "{win}\msagent\chars"
+Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-main (0.1.7)\BonziBuddy_RENEWED-main\bonzibuddy renewed\src\*"; DestDir: "{app}"; Flags: recursesubdirs;
+Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-main (0.1.7)\BonziBuddy_RENEWED-main\bonzibuddy renewed\data\*"; DestDir: "{userappdata}\bonzibuddy renewed"
+Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-main (0.1.7)\BonziBuddy_RENEWED-main\bonzibuddy renewed\dependencies\*"; DestDir: "{tmp}"; Flags: deleteafterinstall; Excludes: Bonzi.acs, bonzi.ico
+Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-main (0.1.7)\BonziBuddy_RENEWED-main\bonzibuddy renewed\dependencies\Bonzicon.ico"; DestDir: "{app}"
+Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-main (0.1.7)\BonziBuddy_RENEWED-main\bonzibuddy renewed\dependencies\Bonzi.acs"; DestDir: "{win}\msagent\chars"
 
 [Dirs]
 Name: "{userappdata}\bonzibuddy renewed"
 
 [Icons]
-Name: "{commondesktop}\bonzibuddy renewed"; Filename: "{app}\launch.bat"
+Name: "{commondesktop}\bonzibuddy renewed"; Filename: "{app}\launch.bat"; IconFilename: "{app}\bonzicon.ico"
