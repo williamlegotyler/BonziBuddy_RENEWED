@@ -139,6 +139,7 @@ Sub InitAgentCommands()
     Bonzi.Commands.Add "Speak", "Speak", ""
     Bonzi.Commands.Add "tellanamazingfact", "Tell an amazing fact", ""
     Bonzi.Commands.Add "singasong", "Sing A Song", ""
+    Bonzi.Commands.Add "Search", "Search", ""
     Bonzi.Commands.Add "info", "Info", ""
     Bonzi.Commands.Add "Exit", "Exit", "Exit"
 End Sub
@@ -179,13 +180,13 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Speak randomjoke
             Bonzi.Play "Giggle"
         Case "Browse"
-            url=InputBox("Enter your url or search here!", "bonzibuddy renewed")
+            url=InputBox("Enter your url here!", "bonzibuddy renewed")
             if url="" Then Wscript.quit
             x.run url, 0, False
             Bonzi.Play "Search"
         Case "Speak"
             speaktext=inputbox("Enter what you want me to speak.", "bonzibuddy renewed")
-            Wscript.sleep 300
+            Wscript.sleep 99
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
             factpath=objFSO.GetParentFolderName(WScript.ScriptFullName) & "\facts.txt"
@@ -206,6 +207,13 @@ Sub AgentControl_Command(ByVal UserInput)
             x.run ".\Songs"
         Case "info"
             MsgBox "BonziBuddy RENEWED version 0.1.7", 0, "Informations about BonziBuddy RENEWED"
+        Case "Search"
+            search=inputbox("Enter your search here!", "bonzibuddy renewed")
+            if search="" Then Wscript.quit
+            searchfiltered = Replace(search, " ", "+")
+            searchurl="https://www.google.com/search?q=" & searchfiltered
+            x.run searchurl, 0, False
+            Bonzi.Play "Search"
         End Select
         ' *** END MASH USER COMMANDS ***
 
