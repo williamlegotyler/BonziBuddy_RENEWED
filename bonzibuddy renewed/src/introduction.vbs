@@ -126,30 +126,10 @@ Sub LoadError()
     MsgBox strMsg, 48
 End Sub
 
-Sub AgentControl_Click(ByVal CharacterID, ByVal Button, ByVal Shift, ByVal X, ByVal Y)
-
-End Sub
-
-Sub AgentControl_DblClick(ByVal CharacterID, ByVal Button, ByVal Shift, ByVal X, ByVal Y)
-    ' Purpose:  Stop and Hide all characters on double-click
-    On Error Resume Next
-
-    Bonzi.StopAll
-    If Not BonziID.HasOtherClients Then
-        If Bonzi.Visible Then
-            Set HideReq = Bonzi.Hide()
-        Else
-            AgentControl.Characters.Unload BonziID
-            ScriptComplete = True
-        End If
-    End If
-End Sub
-
 Sub InitAgentCommands()
     ' Purpose:  Initialize the Commands menu
     Bonzi.Commands.RemoveAll
     Bonzi.Commands.Caption = "MASH Menu"
-    Bonzi.Commands.Add "ACO", "Advanced Character Options", "Advanced Character Options"
     Bonzi.Commands.Add "Exit", "Exit", "Exit"
 End Sub
 
@@ -172,14 +152,13 @@ Sub AgentControl_Command(ByVal UserInput)
         Exit Sub
     Else ' High Confidence
         ' *** BEGIN MASH USER COMMANDS ***
-        Select Case UserInput.Name
-        Case "ACO"
-            AgentControl.PropertySheet.Visible = True
-        End Select
         ' *** END MASH USER COMMANDS ***
 
         If UserInput.Name = "Exit" Then
+            Bonzi.StopAll
             Set HideReq = Bonzi.Hide()
+            Wscript.sleep 2000
+            Wscript.Quit
         End If
     End If
 End Sub
@@ -206,7 +185,7 @@ Sub AgentIntro()
     Bonzi.Play "RestPose"
     Set ContinueReq = Bonzi.Speak("What is your name?")
     Do
-        WScript.Sleep 999
+        WScript.Sleep 900
     Loop Until Continue
     Continue = False
     a = InputBox("Enter your Name or Salutation.", "Bonzibuddy renewed")
@@ -217,7 +196,6 @@ Sub AgentIntro()
 
     textFile.WriteLine(a)
     Wscript.sleep 1000
-    Set WshShell = CreateObject("WScript.Shell")
     Set FSO = CreateObject("Scripting.FileSystemObject")
 
     name = FSO.OpenTextFile(path, 1).ReadAll
