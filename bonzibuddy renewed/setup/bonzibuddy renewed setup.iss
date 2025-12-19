@@ -5,7 +5,7 @@ AppVersion=0.1.7
 AppId={{D7FCEF36-EA7F-4265-868B-3AC766F8FFA6}}
 DefaultDirName={pf}\bonzibuddy renewed
 DisableProgramGroupPage=yes
-UninstallDisplayIcon={app}\launch.bat
+UninstallDisplayIcon={app}\Bonzicon.ico
 OutputDir=userdocs:Inno Setup Examples Output
 LZMANumFastBytes=115
 
@@ -35,4 +35,5 @@ Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-mai
 Name: "{userappdata}\bonzibuddy renewed"
 
 [Icons]
+
 Name: "{commondesktop}\bonzibuddy renewed"; Filename: "{app}\launch.bat"; IconFilename: "{app}\bonzicon.ico"
