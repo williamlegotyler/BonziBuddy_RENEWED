@@ -1,5 +1,9 @@
 Set x = CreateObject("Wscript.shell")
 Set objFSO=CreateObject("Scripting.FileSystemObject")
+path=x.SpecialFolders("appdata") & "\bonzibuddy renewed\username.txt"
+name = objFSO.OpenTextFile(path, 1).ReadAll
+name = Replace(name, Chr(10), "")
+name = Replace(name, Chr(13), "")
 
 ' * Agent Object
 Dim AgentControl
@@ -180,13 +184,14 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Speak randomjoke
             Bonzi.Play "Giggle"
         Case "Browse"
+            Bonzi.Speak "OK " & name & "! Where do you want to go?"
             url=InputBox("Enter your url here!", "bonzibuddy renewed")
-            if url="" Then Wscript.quit
+            if url="" Then Wscript.Quit
             x.run url, 0, False
             Bonzi.Play "Search"
         Case "Speak"
             speaktext=inputbox("Enter what you want me to speak.", "bonzibuddy renewed")
-            Wscript.sleep 300
+            Wscript.sleep 90
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
             factpath=objFSO.GetParentFolderName(WScript.ScriptFullName) & "\facts.txt"
@@ -208,6 +213,7 @@ Sub AgentControl_Command(ByVal UserInput)
         Case "info"
             MsgBox "BonziBuddy RENEWED version 0.1.7", 0, "Informations about BonziBuddy RENEWED"
         Case "Search"
+            Bonzi.Speak "OK!"
             search=inputbox("Enter your search here!", "bonzibuddy renewed")
             if search="" Then Wscript.quit
             searchfiltered = Replace(search, " ", "+")
@@ -238,10 +244,6 @@ Sub AgentIntro()
     Bonzi.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273001}"
     If Not Bonzi.Visible Then
         Bonzi.Show 
-        path=x.SpecialFolders("appdata") & "\bonzibuddy renewed\username.txt"
-        name = objFSO.OpenTextFile(path, 1).ReadAll
-        name = Replace(name, Chr(10), "")
-        name = Replace(name, Chr(13), "")
         Bonzi.Speak "Nice to see you again, " & name & "!"
     else 
         Bonzi.Activate
