@@ -186,12 +186,12 @@ Sub AgentControl_Command(ByVal UserInput)
         Case "Browse"
             Bonzi.Speak "OK " & name & "! Where do you want to go?"
             url=InputBox("Enter your url here!", "bonzibuddy renewed")
-            if url="" Then Wscript.Quit
+            if url="" Then Exit Sub
             x.run url, 0, False
             Bonzi.Play "Search"
         Case "Speak"
             speaktext=inputbox("Enter what you want me to speak.", "bonzibuddy renewed")
-            Wscript.sleep 90
+            Wscript.sleep 50
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
             factpath=objFSO.GetParentFolderName(WScript.ScriptFullName) & "\facts.txt"
@@ -215,7 +215,7 @@ Sub AgentControl_Command(ByVal UserInput)
         Case "Search"
             Bonzi.Speak "OK!"
             search=inputbox("Enter your search here!", "bonzibuddy renewed")
-            if search="" Then Wscript.quit
+            if search="" Then Exit Sub
             searchfiltered = Replace(search, " ", "+")
             searchurl="https://www.google.com/search?q=" & searchfiltered
             x.run searchurl, 0, False
