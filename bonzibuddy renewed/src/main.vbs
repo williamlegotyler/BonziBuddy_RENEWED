@@ -194,7 +194,6 @@ Sub AgentControl_Command(ByVal UserInput)
         Case "Speak"
             Bonzi.StopAll
             speaktext=inputbox("Enter what you want me to speak.", "bonzibuddy renewed")
-            Wscript.sleep 50
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
             Bonzi.StopAll
@@ -266,3 +265,4 @@ Sub AgentIntro()
     Loop Until ScriptComplete
 
 End Sub
+
