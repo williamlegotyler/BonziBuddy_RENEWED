@@ -169,6 +169,7 @@ Sub AgentControl_Command(ByVal UserInput)
         ' *** BEGIN MASH USER COMMANDS ***
         Select Case UserInput.Name
         Case "tellajoke"
+            Bonzi.StopAll
             jokepath=objFSO.GetParentFolderName(WScript.ScriptFullName) & "\jokes.txt"
             Set objFile=objFSO.OpenTextFile(jokepath, 1)
             arrjokes=Array()
@@ -184,16 +185,19 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Speak randomjoke
             Bonzi.Play "Giggle"
         Case "Browse"
+            Bonzi.StopAll
             Bonzi.Speak "OK " & name & "! Where do you want to go?"
             url=InputBox("Enter your url here!", "bonzibuddy renewed")
             if url="" Then Exit Sub
             x.run url, 0, False
             Bonzi.Play "Search"
         Case "Speak"
+            Bonzi.StopAll
             speaktext=inputbox("Enter what you want me to speak.", "bonzibuddy renewed")
             Wscript.sleep 50
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
+            Bonzi.StopAll
             factpath=objFSO.GetParentFolderName(WScript.ScriptFullName) & "\facts.txt"
             Set objFile=objFSO.OpenTextFile(factpath, 1)
             arrfacts=Array()
@@ -209,10 +213,13 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Speak randomfact
             Bonzi.Play "ReadReturn"
         Case "singasong"
+            Bonzi.StopAll
             x.run ".\Songs"
         Case "info"
+            Bonzi.StopAll
             MsgBox "BonziBuddy RENEWED version 0.1.7", 0, "Informations about BonziBuddy RENEWED"
         Case "Search"
+            Bonzi.StopAll
             Bonzi.Speak "OK!"
             search=inputbox("Enter your search here!", "bonzibuddy renewed")
             if search="" Then Exit Sub
@@ -224,6 +231,7 @@ Sub AgentControl_Command(ByVal UserInput)
         ' *** END MASH USER COMMANDS ***
 
         If UserInput.Name = "Exit" Then
+            Bonzi.StopAll
             Set HideReq = Bonzi.Hide()
         End If
     End If
@@ -256,4 +264,5 @@ Sub AgentIntro()
     Do
         WScript.Sleep 1000
     Loop Until ScriptComplete
+
 End Sub
