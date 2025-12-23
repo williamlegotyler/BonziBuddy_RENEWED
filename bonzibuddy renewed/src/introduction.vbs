@@ -177,9 +177,11 @@ Sub AgentIntro()
 
     Bonzi.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273001}"
     Bonzi.Show
+    Bonzi.Play "Wave"
     Bonzi.Speak "Well!"
-    Bonzi.Speak "hello there!"
+    Bonzi.Speak "Hello there!"
     Bonzi.Speak "I don't believe we've been properly introduced."
+    Bonzi.Play "RestPose"
     Bonzi.Play "Greet"
     Bonzi.Speak "I'm Bonzi!"
     Bonzi.Play "RestPose"
@@ -215,5 +217,6 @@ Sub AgentIntro()
 
     Wscript.sleep 1000
     AgentControl.Characters.Unload BonziID
+
 
 End Sub
