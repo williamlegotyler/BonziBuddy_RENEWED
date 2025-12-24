@@ -1,6 +1,7 @@
 Set x = CreateObject("Wscript.shell")
 Set objFSO=CreateObject("Scripting.FileSystemObject")
 path=x.SpecialFolders("appdata") & "\bonzibuddy renewed\username.txt"
+path1=x.SpecialFolders("appdata") & "\bonzibuddy renewed\lastrungreet.txt"
 name = objFSO.OpenTextFile(path, 1).ReadAll
 name = Replace(name, Chr(10), "")
 name = Replace(name, Chr(13), "")
@@ -254,6 +255,13 @@ Sub AgentIntro()
         Bonzi.Play "Wave"
         Bonzi.Speak "Nice to see you again, " & name & "!"
         Bonzi.Play "RestPose"
+        If objfso.getfile(path1).size > 0 then lastrun=objfso.OpenTextFile(path1).ReadLine
+        If month(date)=12 and day(date)=25 then
+            If lastrun <> Cstr(date) then
+            Bonzi.Speak "Ho ho ho! Merry christmas " & name & "!"
+            objfso.CreateTextFile(path1).Write(date)
+            End If
+        End If
     else 
         Bonzi.Activate
     End If
