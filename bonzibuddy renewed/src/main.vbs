@@ -251,7 +251,9 @@ Sub AgentIntro()
     Bonzi.TTSModeID = "{CA141FD0-AC7F-11D1-97A3-006008273001}"
     If Not Bonzi.Visible Then
         Bonzi.Show 
+        Bonzi.Play "Wave"
         Bonzi.Speak "Nice to see you again, " & name & "!"
+        Bonzi.Play "RestPose"
     else 
         Bonzi.Activate
     End If
@@ -265,4 +267,5 @@ Sub AgentIntro()
     Loop Until ScriptComplete
 
 End Sub
+
 
