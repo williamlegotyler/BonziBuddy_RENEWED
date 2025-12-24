@@ -8,10 +8,10 @@ As of now it can Speak, Tell Jokes, Tell Amazing Facts, Browse, Sing Songs and e
 # Compatibility
 For compatibility i specifically target these systems:
 
-- # Windows 2000 (Tested, works).
-- # Windows xp (Tested, works).
-- # Windows 7 (Tested, works with some problems although can be fixed with patches).
-- # Windows 10 (Tested, works but with some problems although can be fixed with patches).
+- ## Windows 2000 (Tested, works).
+- ## Windows xp (Tested, works).
+- ## Windows 7 (Tested, works with some problems although can be fixed with patches).
+- ## Windows 10 (Tested, works but with some problems although can be fixed with patches).
 
 # Compiling
 Since this project is primarly made with scripts which don't need compilation, compiling this project is extremely easy as you just need to compile all the scripts into an installer, to do that you will need Inno Setup Compiler version 5.5.8 (as that's one of the last versions supporting windows 2000 and xp).
