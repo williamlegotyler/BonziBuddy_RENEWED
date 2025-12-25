@@ -137,13 +137,13 @@ Sub InitAgentCommands()
     ' Purpose:  Initialize the Commands menu
     Bonzi.Commands.RemoveAll
     Bonzi.Commands.Caption = "MASH Menu"
-    Bonzi.Commands.Add "tellajoke", "Tell a joke", ""
-    Bonzi.Commands.Add "Browse", "Browse", ""
-    Bonzi.Commands.Add "Speak", "Speak", ""
-    Bonzi.Commands.Add "tellanamazingfact", "Tell an amazing fact", ""
-    Bonzi.Commands.Add "singasong", "Sing A Song", ""
-    Bonzi.Commands.Add "Search", "Search", ""
-    Bonzi.Commands.Add "info", "Info", ""
+    Bonzi.Commands.Add "tellajoke", "Tell a joke", "Tell a joke"
+    Bonzi.Commands.Add "Browse", "Browse", "Browse"
+    Bonzi.Commands.Add "Speak", "Speak", "Speak"
+    Bonzi.Commands.Add "tellanamazingfact", "Tell an amazing fact", "Tell an amazing fact"
+    Bonzi.Commands.Add "singasong", "Sing A Song", "Sing a song"
+    Bonzi.Commands.Add "Search", "Search", "Search"
+    Bonzi.Commands.Add "info", "Info", "Info"
     Bonzi.Commands.Add "Exit", "Exit", "Exit"
 End Sub
 
@@ -271,7 +271,4 @@ Sub AgentIntro()
     Do
         WScript.Sleep 1000
     Loop Until ScriptComplete
-
 End Sub
-
-
