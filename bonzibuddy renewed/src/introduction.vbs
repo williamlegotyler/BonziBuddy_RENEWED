@@ -187,7 +187,7 @@ Sub AgentIntro()
     Bonzi.Play "RestPose"
     Set ContinueReq = Bonzi.Speak("What is your name?")
     Do
-        WScript.Sleep 900
+        WScript.Sleep 800
     Loop Until Continue
     Continue = False
     a = InputBox("Enter your Name or Salutation.", "Bonzibuddy renewed")
@@ -196,13 +196,10 @@ Sub AgentIntro()
     path=x.SpecialFolders("appdata") & "\bonzibuddy renewed\username.txt"
     Set textfile=fso.CreateTextFile(path, True)
 
-    textFile.WriteLine(a)
+    textFile.Write(a)
     Wscript.sleep 1000
-    Set FSO = CreateObject("Scripting.FileSystemObject")
 
-    name = FSO.OpenTextFile(path, 1).ReadAll
-    name = Replace(name, Chr(10), "")
-    name = Replace(name, Chr(13), "")
+    name = fso.OpenTextFile(path, 1).ReadAll
     Bonzi.Speak "Nice to meet you, " & name & "!"
     Bonzi.Play "Write"
     Bonzi.Play "WriteReturn"

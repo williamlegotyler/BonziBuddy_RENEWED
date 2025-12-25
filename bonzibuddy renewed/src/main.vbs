@@ -3,8 +3,6 @@ Set objFSO=CreateObject("Scripting.FileSystemObject")
 path=x.SpecialFolders("appdata") & "\bonzibuddy renewed\username.txt"
 path1=x.SpecialFolders("appdata") & "\bonzibuddy renewed\lastrungreet.txt"
 name = objFSO.OpenTextFile(path, 1).ReadAll
-name = Replace(name, Chr(10), "")
-name = Replace(name, Chr(13), "")
 
 ' * Agent Object
 Dim AgentControl
