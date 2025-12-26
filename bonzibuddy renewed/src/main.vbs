@@ -1,8 +1,8 @@
-Set x = CreateObject("Wscript.shell")
+Set x=CreateObject("Wscript.shell")
 Set objFSO=CreateObject("Scripting.FileSystemObject")
 path=x.SpecialFolders("appdata") & "\bonzibuddy renewed\username.txt"
 path1=x.SpecialFolders("appdata") & "\bonzibuddy renewed\lastrungreet.txt"
-name = objFSO.OpenTextFile(path, 1).ReadAll
+name=objFSO.OpenTextFile(path, 1).ReadAll
 
 ' * Agent Object
 Dim AgentControl
@@ -230,6 +230,7 @@ Sub AgentControl_Command(ByVal UserInput)
 
         If UserInput.Name = "Exit" Then
             Bonzi.StopAll
+            Bonzi.Speak "Hope to see you soon, " & name & "!"
             Set HideReq = Bonzi.Hide()
         End If
     End If
