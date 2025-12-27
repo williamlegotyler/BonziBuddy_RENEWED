@@ -129,6 +129,8 @@ Sub AgentControl_Click(ByVal CharacterID, ByVal Button, ByVal Shift, ByVal X, By
 
     If Button = 1 Then
         Bonzi.StopAll
+        Wscript.Sleep 50
+        Bonzi.Play "RestPose"
     End If
 End Sub
 
@@ -212,9 +214,13 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Play "ReadReturn"
         Case "singasong"
             Bonzi.StopAll
+            Wscript.Sleep 50
+            Bonzi.play "RestPose"
             x.run ".\Songs"
         Case "info"
             Bonzi.StopAll
+            Wscript.Sleep 50
+            Bonzi.Play"RestPose"
             MsgBox "BonziBuddy RENEWED version 0.1.7", 0, "Informations about BonziBuddy RENEWED"
         Case "Search"
             Bonzi.StopAll
