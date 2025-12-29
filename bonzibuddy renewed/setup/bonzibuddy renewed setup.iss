@@ -25,11 +25,11 @@ begin
 end;
 
 [Files]
-Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-main-0.1.7\bonzibuddy renewed\src\*"; DestDir: "{app}"; Flags: recursesubdirs;
-Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-main-0.1.7\bonzibuddy renewed\data\*"; DestDir: "{userappdata}\bonzibuddy renewed"
-Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-main-0.1.7\bonzibuddy renewed\dependencies\*"; DestDir: "{tmp}"; Flags: deleteafterinstall; Excludes: Bonzi.acs, bonzi.ico
-Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-main-0.1.7\bonzibuddy renewed\dependencies\Bonzicon.ico"; DestDir: "{app}"
-Source: "C:\Documents and Settings\williamtylertv\Desktop\BonziBuddy_RENEWED-main-0.1.7\bonzibuddy renewed\dependencies\Bonzi.acs"; DestDir: "{win}\msagent\chars"
+Source: "..\src\*"; DestDir: "{app}"; Flags: recursesubdirs;
+Source: "..\data\*"; DestDir: "{userappdata}\bonzibuddy renewed"
+Source: "..\dependencies\*"; DestDir: "{tmp}"; Flags: deleteafterinstall; Excludes: Bonzi.acs, bonzi.ico
+Source: "..\dependencies\Bonzicon.ico"; DestDir: "{app}"
+Source: "..\dependencies\Bonzi.acs"; DestDir: "{win}\msagent\chars"
 
 [Dirs]
 Name: "{userappdata}\bonzibuddy renewed"
