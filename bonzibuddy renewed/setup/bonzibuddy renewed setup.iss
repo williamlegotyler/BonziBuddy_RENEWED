@@ -26,8 +26,8 @@ end;
 
 [Files]
 Source: "..\src\*"; DestDir: "{app}"; Flags: recursesubdirs;
-Source: "..\data\*"; DestDir: "{userappdata}\bonzibuddy renewed"
-Source: "..\dependencies\*"; DestDir: "{tmp}"; Flags: deleteafterinstall; Excludes: Bonzi.acs, bonzi.ico
+Source: "..\data\*"; DestDir: "{userappdata}\bonzibuddy renewed"; Flags: onlyifdoesntexist
+Source: "..\dependencies\*"; DestDir: "{tmp}"; Flags: deleteafterinstall; Excludes: Bonzi.acs, bonzicon.ico
 Source: "..\dependencies\Bonzicon.ico"; DestDir: "{app}"
 Source: "..\dependencies\Bonzi.acs"; DestDir: "{win}\msagent\chars"
 
@@ -35,5 +35,4 @@ Source: "..\dependencies\Bonzi.acs"; DestDir: "{win}\msagent\chars"
 Name: "{userappdata}\bonzibuddy renewed"
 
 [Icons]
-
 Name: "{commondesktop}\bonzibuddy renewed"; Filename: "{app}\launch.bat"; IconFilename: "{app}\bonzicon.ico"
