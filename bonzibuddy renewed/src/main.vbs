@@ -1,7 +1,8 @@
 Set x=CreateObject("Wscript.shell")
 Set objFSO=CreateObject("Scripting.FileSystemObject")
-path=x.SpecialFolders("appdata") & "\bonzibuddy renewed\username.txt"
-path1=x.SpecialFolders("appdata") & "\bonzibuddy renewed\lastrungreet.txt"
+apppath=x.SpecialFolders("appdata") & "\bonzibuddy renewed"
+path=apppath & "\username.txt"
+path1=apppath & "\lastrungreet.txt"
 name=objFSO.OpenTextFile(path, 1).ReadAll
 
 ' * Agent Object
@@ -181,7 +182,7 @@ Sub AgentControl_Command(ByVal UserInput)
             objFile.Close
             Randomize
             randomjoke=arrjokes(Int((UBound(arrJokes) + 1) * Rnd))
-            Wscript.sleep 498
+            Wscript.sleep 50
             Bonzi.Speak "I've got one for you."
             Bonzi.Speak randomjoke
             Bonzi.Play "Giggle"
@@ -208,7 +209,7 @@ Sub AgentControl_Command(ByVal UserInput)
             objFile.Close
             Randomize
             randomfact=arrfacts(Int((UBound(arrfacts) + 1) * Rnd))
-            Wscript.sleep 498
+            Wscript.sleep 50
             Bonzi.Play "ReadLookUp"
             Bonzi.Speak randomfact
             Bonzi.Play "ReadReturn"
@@ -216,7 +217,7 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.StopAll
             Wscript.Sleep 50
             Bonzi.play "RestPose"
-            x.run ".\Songs"
+            x.run "explorer .\Songs"
         Case "info"
             Bonzi.StopAll
             Wscript.Sleep 50
