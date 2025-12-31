@@ -264,7 +264,12 @@ Sub AgentIntro()
         If objfso.getfile(path1).size > 0 then lastrun=objfso.OpenTextFile(path1).ReadLine
         If month(date)=12 and day(date)=25 then
             If lastrun <> Cstr(date) then
-            Bonzi.Speak "Ho ho ho! Merry christmas " & name & "!"
+            Bonzi.Speak "Ho Ho Ho! Merry christmas " & name & "! Season greeting!"
+            objfso.CreateTextFile(path1).Write(date)
+            End If
+        ElseIf month(date)=1 and day(date)=01 then
+            If lastrun <> Cstr(date) then
+            Bonzi.Speak "Happy New Year's Day! Have you made your new year's resolutions yet?"
             objfso.CreateTextFile(path1).Write(date)
             End If
         End If
