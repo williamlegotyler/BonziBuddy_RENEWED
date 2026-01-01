@@ -262,15 +262,16 @@ Sub AgentIntro()
         Bonzi.Speak "Nice to see you again, " & name & "!"
         Bonzi.Play "RestPose"
         If objfso.getfile(path1).size > 0 then lastrun=objfso.OpenTextFile(path1).ReadLine
-        If month(date)=12 and day(date)=25 then
-            If lastrun <> Cstr(date) then
+        currentdate=Right(Day(Date)+100,2) & " " & Right(Month(Date)+100,2) & " " & Year(Date)
+        If month(currentdate)=12 and day(currentdate)=25 then
+            If lastrun <> currentdate then
             Bonzi.Speak "Ho Ho Ho! Merry christmas " & name & "! Season greeting!"
-            objfso.CreateTextFile(path1).Write(date)
+            objfso.CreateTextFile(path1).Write(currentdate)
             End If
-        ElseIf month(date)=1 and day(date)=01 then
-            If lastrun <> Cstr(date) then
+        ElseIf month(currentdate)=1 and day(currentdate)=1 then
+            If lastrun <> currentdate then
             Bonzi.Speak "Happy New Year's Day! Have you made your new year's resolutions yet?"
-            objfso.CreateTextFile(path1).Write(date)
+            objfso.CreateTextFile(path1).Write(currentdate)
             End If
         End If
     else 
