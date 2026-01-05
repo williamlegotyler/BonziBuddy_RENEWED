@@ -1,4 +1,11 @@
 Set x=CreateObject("Wscript.shell")
+envVar1="process_" & scriptName
+
+If x.Environment("VOLATILE")(envVar1) = "TRUE" Then
+    WScript.Quit
+End If
+
+x.Environment("VOLATILE")(envVar1) = "TRUE"
 Set objFSO=CreateObject("Scripting.FileSystemObject")
 apppath=x.SpecialFolders("appdata") & "\bonzibuddy renewed"
 path=apppath & "\username.txt"
@@ -286,3 +293,4 @@ Sub AgentIntro()
         WScript.Sleep 1000
     Loop Until ScriptComplete
 End Sub
+x.Environment("VOLATILE").Remove(envVar1)

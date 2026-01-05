@@ -1,4 +1,11 @@
-Set x = CreateObject("Wscript.shell")
+Set x=CreateObject("Wscript.shell")
+envVar="process_" & scriptName
+
+If x.Environment("VOLATILE")(envVar) = "TRUE" Then
+    WScript.Quit
+End If
+
+x.Environment("VOLATILE")(envVar) = "TRUE"
 
 ' * Agent Object
 Dim AgentControl
@@ -114,7 +121,6 @@ Sub AgentControl_RequestComplete(ByVal RequestObject)
 
     If RequestObject <> ContinueReq Then
         Continue = True
-
     End If
 End Sub
 
@@ -157,6 +163,7 @@ Sub AgentControl_Command(ByVal UserInput)
         If UserInput.Name = "Exit" Then
             Bonzi.StopAll
             Set HideReq = Bonzi.Hide()
+            x.Environment("VOLATILE").Remove(envVar)
             Wscript.sleep 2000
             Wscript.Quit
         End If
@@ -187,33 +194,32 @@ Sub AgentIntro()
     Bonzi.Play "RestPose"
     Set ContinueReq = Bonzi.Speak("What is your name?")
     Do
-        WScript.Sleep 800
+        WScript.Sleep 700
     Loop Until Continue
     Continue = False
-    a = InputBox("Enter your Name or Salutation.", "Bonzibuddy renewed")
+    a=InputBox("Enter your Name or Salutation.", "Bonzibuddy renewed")
 
-    Set fso = CreateObject("Scripting.FileSystemObject")
+    Set fso=CreateObject("Scripting.FileSystemObject")
     path=x.SpecialFolders("appdata") & "\bonzibuddy renewed\username.txt"
     Set textfile=fso.CreateTextFile(path, True)
 
     textFile.Write(a)
-    Wscript.sleep 1000
+    Wscript.sleep 700
 
-    name = fso.OpenTextFile(path, 1).ReadAll
+    name=fso.OpenTextFile(path, 1).ReadAll
     Bonzi.Speak "Nice to meet you, " & name & "!"
     Bonzi.Play "Write"
     Bonzi.Play "WriteReturn"
     Bonzi.Speak "Since this is the first time we've met, I'd like to tell you a little about myself."
-    Bonzi.Speak "I am your friend and BonziBUDDY renewed! aiming to be better than the original one and especially...being free of malware! as of now my capabilities are very limited, but as the time goes on ill catch up on my original one and get even better! So don't be afraid to update me!"
+    Bonzi.Speak "I am your friend and BonziBUDDY renewed! aiming to be better than the original one and especially...being free of malware! as of now my capabilities are very limited, but as the time goes on i'll catch up on my original one and get even better! So don't be afraid to update me!"
     Bonzi.Play "PleasedSoft"
     Set ContinueReq = Bonzi.Speak("\mrk=999999999\")
     Do
         WScript.Sleep 999
     Loop Until Continue
+    x.Environment("VOLATILE").Remove(envVar)
+    Bonzi.Commands.Caption = ""
     x.run "main.vbs"
-
     Wscript.sleep 1000
     AgentControl.Characters.Unload BonziID
-
-
 End Sub
