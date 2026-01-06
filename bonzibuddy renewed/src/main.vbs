@@ -11,6 +11,23 @@ apppath=x.SpecialFolders("appdata") & "\bonzibuddy renewed"
 path=apppath & "\username.txt"
 path1=apppath & "\lastrungreet.txt"
 name=objFSO.OpenTextFile(path, 1).ReadAll
+currentpath=objFSO.GetParentFolderName(WScript.ScriptFullName)
+jokepath=currentpath & "\jokes.txt"
+Set objFile=objFSO.OpenTextFile(jokepath, 1)
+arrjokes=Array()
+Do Until objFile.AtEndOfStream
+    Redim Preserve arrjokes(UBound(arrjokes)+1)
+    arrjokes(UBound(arrjokes))=objFile.ReadLine
+Loop
+objFile.Close
+factpath=currentpath & "\facts.txt"
+Set objFile=objFSO.OpenTextFile(factpath, 1)
+arrfacts=Array()
+Do Until objFile.AtEndOfStream
+    Redim Preserve arrfacts(UBound(arrfacts)+1)
+    arrfacts(UBound(arrfacts))=objFile.ReadLine
+Loop
+objFile.Close
 
 ' * Agent Object
 Dim AgentControl
@@ -179,16 +196,8 @@ Sub AgentControl_Command(ByVal UserInput)
         Select Case UserInput.Name
         Case "tellajoke"
             Bonzi.StopAll
-            jokepath=objFSO.GetParentFolderName(WScript.ScriptFullName) & "\jokes.txt"
-            Set objFile=objFSO.OpenTextFile(jokepath, 1)
-            arrjokes=Array()
-            Do Until objFile.AtEndOfStream
-                Redim Preserve arrjokes(UBound(arrjokes) + 1)
-                arrjokes(UBound(arrjokes))=objFile.ReadLine
-            Loop
-            objFile.Close
             Randomize
-            randomjoke=arrjokes(Int((UBound(arrJokes) + 1) * Rnd))
+            randomjoke=arrjokes(Int((UBound(arrJokes)+1)*Rnd))
             Wscript.sleep 50
             Bonzi.Speak "I've got one for you."
             Bonzi.Speak randomjoke
@@ -206,16 +215,8 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
             Bonzi.StopAll
-            factpath=objFSO.GetParentFolderName(WScript.ScriptFullName) & "\facts.txt"
-            Set objFile=objFSO.OpenTextFile(factpath, 1)
-            arrfacts=Array()
-            Do Until objFile.AtEndOfStream
-                Redim Preserve arrfacts(UBound(arrfacts) + 1)
-                arrfacts(UBound(arrfacts))=objFile.ReadLine
-            Loop
-            objFile.Close
             Randomize
-            randomfact=arrfacts(Int((UBound(arrfacts) + 1) * Rnd))
+            randomfact=arrfacts(Int((UBound(arrfacts)+1)*Rnd))
             Wscript.sleep 50
             Bonzi.Play "ReadLookUp"
             Bonzi.Speak randomfact

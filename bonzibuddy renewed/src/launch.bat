@@ -1,5 +1,4 @@
 @echo off
-
 findstr /i "yes" "%appdata%\bonzibuddy renewed\firstrun.txt" >nul && goto yes
 findstr /i "no" "%appdata%\bonzibuddy renewed\firstrun.txt" >nul && goto no
 
