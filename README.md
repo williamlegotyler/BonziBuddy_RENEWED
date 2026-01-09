@@ -13,5 +13,10 @@ For compatibility i specifically target these systems:
 - ## Windows 7 (Tested, works with some problems although can be fixed with patches).
 - ## Windows 10 (Tested, works but with some problems although can be fixed with patches).
 
+# Screenshots
+Here are some screenshots of the program running on Windows 2000 and Windows xp.
+<img width="1359" height="658" alt="Screenshot (292)" src="https://github.com/user-attachments/assets/0429ecbd-4c92-4373-81c8-882ee462672f" />
+<img width="1348" height="653" alt="Screenshot (294)" src="https://github.com/user-attachments/assets/b63fc228-6e1e-4508-9291-80240c7c6b13" />
+
 # Compiling
 Since this project is primarly made with scripts which don't need compilation, compiling this project is extremely easy as you just need to compile all the scripts into an installer, to do that you will need Inno Setup Compiler version 5.5.8 (as that's one of the last versions supporting windows 2000 and xp).
