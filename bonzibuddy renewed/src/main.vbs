@@ -1,11 +1,4 @@
 Set x=CreateObject("Wscript.shell")
-envVar1="process_" & scriptName
-
-If x.Environment("VOLATILE")(envVar1) = "TRUE" Then
-    WScript.Quit
-End If
-
-x.Environment("VOLATILE")(envVar1) = "TRUE"
 Set objFSO=CreateObject("Scripting.FileSystemObject")
 apppath=x.SpecialFolders("appdata") & "\bonzibuddy renewed"
 path=apppath & "\username.txt"
@@ -13,21 +6,8 @@ path1=apppath & "\lastrungreet.txt"
 name=objFSO.OpenTextFile(path, 1).ReadAll
 currentpath=objFSO.GetParentFolderName(WScript.ScriptFullName)
 jokepath=currentpath & "\jokes.txt"
-Set objFile=objFSO.OpenTextFile(jokepath, 1)
-arrjokes=Array()
-Do Until objFile.AtEndOfStream
-    Redim Preserve arrjokes(UBound(arrjokes)+1)
-    arrjokes(UBound(arrjokes))=objFile.ReadLine
-Loop
-objFile.Close
 factpath=currentpath & "\facts.txt"
-Set objFile=objFSO.OpenTextFile(factpath, 1)
-arrfacts=Array()
-Do Until objFile.AtEndOfStream
-    Redim Preserve arrfacts(UBound(arrfacts)+1)
-    arrfacts(UBound(arrfacts))=objFile.ReadLine
-Loop
-objFile.Close
+holidaypath=currentpath & "\holidaygreetings.txt"
 
 ' * Agent Object
 Dim AgentControl
@@ -43,6 +23,29 @@ Dim BonziLoaded
 Dim HideReq
 Dim Req
 Dim ScriptComplete
+Dim envVar
+
+envVar="process_" & Wscript.scriptName
+
+If x.Environment("VOLATILE")(envVar) = "TRUE" Then
+    WScript.Quit
+End If
+
+x.Environment("VOLATILE")(envVar) = "TRUE"
+Set objFile=objFSO.OpenTextFile(jokepath, 1)
+arrjokes=Array()
+Do Until objFile.AtEndOfStream
+    Redim Preserve arrjokes(UBound(arrjokes)+1)
+    arrjokes(UBound(arrjokes))=objFile.ReadLine
+Loop
+objFile.Close
+Set objFile=objFSO.OpenTextFile(factpath, 1)
+arrfacts=Array()
+Do Until objFile.AtEndOfStream
+    Redim Preserve arrfacts(UBound(arrfacts)+1)
+    arrfacts(UBound(arrfacts))=objFile.ReadLine
+Loop
+objFile.Close
 
 ' * Initialize
 UsedChars = "Bonzi"
@@ -236,7 +239,7 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Speak "OK!"
             search=inputbox("Enter your search here!", "bonzibuddy renewed")
             if search="" Then Exit Sub
-            searchfiltered = Replace(search, " ", "+")
+            searchfiltered=Replace(search, " ", "+")
             searchurl="https://www.google.com/search?q=" & searchfiltered
             x.run searchurl, 0, False
             Bonzi.Play "Search"
@@ -271,16 +274,21 @@ Sub AgentIntro()
         Bonzi.Play "RestPose"
         If objfso.getfile(path1).size > 0 then lastrun=objfso.OpenTextFile(path1).ReadLine
         currentdate=Right(Day(Date)+100,2) & " " & Right(Month(Date)+100,2) & " " & Year(Date)
-        If month(currentdate)=12 and day(currentdate)=25 then
-            If lastrun <> currentdate then
-            Bonzi.Speak "Ho Ho Ho! Merry christmas " & name & "! Season greeting!"
-            objfso.CreateTextFile(path1).Write(currentdate)
-            End If
-        ElseIf month(currentdate)=1 and day(currentdate)=1 then
-            If lastrun <> currentdate then
-            Bonzi.Speak "Happy New Year's Day! Have you made your new year's resolutions yet?"
-            objfso.CreateTextFile(path1).Write(currentdate)
-            End If
+        currentdate1=Right(Day(Date)+100,2)
+        currentdate2=Right(Month(Date)+100,2)
+        set holidaygreetings=objfso.OpenTextFile(holidaypath)
+        If lastrun <> currentdate then
+             Do Until match=true or holidaygreetings.AtEndOfStream
+                holidaygreeting=holidaygreetings.ReadLine
+                words=Split(holidaygreeting)
+                if words(0)=currentdate1 And words(1)=currentdate2 Then
+                scriptline=Split(holidaygreeting, " ", 3)(2)
+                Execute("result = " & scriptLine)
+                Bonzi.Speak result
+                objfso.CreateTextFile(path1).Write(currentdate)
+                match=true
+                end if
+             Loop
         End If
     else 
         Bonzi.Activate
@@ -294,4 +302,4 @@ Sub AgentIntro()
         WScript.Sleep 1000
     Loop Until ScriptComplete
 End Sub
-x.Environment("VOLATILE").Remove(envVar1)
+x.Environment("VOLATILE").Remove(envVar)

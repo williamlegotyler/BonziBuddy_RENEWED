@@ -1,11 +1,4 @@
 Set x=CreateObject("Wscript.shell")
-envVar="process_" & scriptName
-
-If x.Environment("VOLATILE")(envVar) = "TRUE" Then
-    WScript.Quit
-End If
-
-x.Environment("VOLATILE")(envVar) = "TRUE"
 
 ' * Agent Object
 Dim AgentControl
@@ -21,6 +14,15 @@ Dim BonziLoaded
 Dim HideReq
 Dim Req
 Dim ScriptComplete
+Dim envVar
+
+envVar="process_" & Wscript.scriptName
+
+If x.Environment("VOLATILE")(envVar) = "TRUE" Then
+    WScript.Quit
+End If
+
+x.Environment("VOLATILE")(envVar) = "TRUE"
 
 ' * Initialize
 UsedChars = "Bonzi"

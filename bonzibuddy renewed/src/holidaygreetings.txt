@@ -1,0 +1,2 @@
+25 12 "Ho Ho Ho! Merry christmas " & name & "! Season greeting!"
+01 01 "Happy New Year's Day! Have you made your new year's resolutions yet?"
