@@ -53,7 +53,7 @@ Bonzi.Speak "\Chr=""Monotone""\\Map=""\Pit=196\\Spd=160\beu \Pit=175\tì \Pit=147
 Bonzi.Speak "\Chr=""Monotone""\\Map=""\Pit=262\\Spd=70\e'en \Spd=130\as the \Pit=220\morn \Pit=294\on \Pit=247\the streamlet\Pit=220\and \Pit=196\sea""=""e'en as the morn on the streamlet and sea.""\"
 Bonzi.Speak "\Chr=""Monotone""\\Map=""\Pit=262\\Spd=70\then \Pit=247\\Spd=130\will \Pit=262\all \Pit=196\clouds \Pit=165\of \Pit=147\sar \Pit=139\row \Pit=147\de \Pit=220\part""=""Then will all clouds of sorrow depart.""\"
 Bonzi.Speak "\Chr=""Monotone""\\Map=""\Pit=196\\Spd=70\Beu \Pit=247\\Spd=130\tì \Pit=220\full drea \Pit=196\mer \Pit=175\awake \Pit=165\un \Pit=147\to \Pit=165\mee.""=""Beautiful dreamer awake unto me,""\"
-    
+
 Set SongEndReq = Bonzi.Speak("\Chr=""Monotone""\\Map=""\Pit=220\\Spd=130\Beu \Pit=247\tì \Pit=262\full drea \Pit=220\mer \Pit=165\aw \Pit=175\\Spd=70\wake \Pit=165\\Spd=130\un \Pit=147\to \Pit=131\mee.""=""Beautiful dreamer awake unto me.""\")
 
 Do
