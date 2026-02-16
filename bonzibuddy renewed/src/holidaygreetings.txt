@@ -1,2 +1,8 @@
 25 12 "Ho Ho Ho! Merry christmas " & name & "! Season greeting!"
 01 01 "Happy New Year's Day! Have you made your new year's resolutions yet?"
+14 02 "Happy Valentine's day, " & name & ". Will you be my Valentine?"
+17 03 "Oh my green eggs and ham! It's St. Patrick's Day. Hope you're wearing green today!"
+04 07 "Today is American Independence Day! America is celebrating its freedom!"
+31 10 "This is the scariest voice I could come up with for Halloween. Trick or Treat! And a fright filled All Hallows Eve to you... Got any cough drops?"
+02 02 "Hey " & name & ", today is GroundHog day. I sure hope that little critter doesn't forecast more winter."
+01 04 "April Fools!"
