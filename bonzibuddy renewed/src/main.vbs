@@ -210,6 +210,10 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Speak "OK " & name & "! Where do you want to go?"
             url=InputBox("Enter your url here!", "bonzibuddy renewed")
             if url="" Then Exit Sub
+            If InStr(url, "://")=0 Then
+            url="https://" & url
+            End If
+            url=Replace(url, " ", "")
             x.run url, 0, False
             Bonzi.Play "Search"
         Case "Speak"
