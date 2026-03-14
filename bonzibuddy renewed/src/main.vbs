@@ -8,6 +8,8 @@ currentpath=objFSO.GetParentFolderName(WScript.ScriptFullName)
 jokepath=currentpath & "\jokes.txt"
 factpath=currentpath & "\facts.txt"
 holidaypath=currentpath & "\holidaygreetings.txt"
+inipath=".\Bonzi.ini"
+set ini=objFSO.OpenTextFile(inipath, 1)
 
 ' * Agent Object
 Dim AgentControl
@@ -32,6 +34,15 @@ If x.Environment("VOLATILE")(envVar) = "TRUE" Then
 End If
 
 x.Environment("VOLATILE")(envVar) = "TRUE"
+Do Until ini.AtEndOfStream
+    line=ini.ReadLine
+    If InStr(line, "=")>0 Then
+        parts=Split(line, "=", 2)
+        If Trim(LCase(parts(0)))="search_engine" Then
+            search_engine=parts(1)
+        End If
+    End If
+Loop
 Set objFile=objFSO.OpenTextFile(jokepath, 1)
 arrjokes=Array()
 Do Until objFile.AtEndOfStream
@@ -244,7 +255,7 @@ Sub AgentControl_Command(ByVal UserInput)
             search=inputbox("Enter your search here!", "bonzibuddy renewed")
             if search="" Then Exit Sub
             searchfiltered=Replace(search, " ", "+")
-            searchurl="https://www.google.com/search?q=" & searchfiltered
+            searchurl=search_engine & searchfiltered
             x.run searchurl, 0, False
             Bonzi.Play "Search"
         End Select
