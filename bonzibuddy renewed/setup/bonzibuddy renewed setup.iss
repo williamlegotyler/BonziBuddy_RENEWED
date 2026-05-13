@@ -7,7 +7,7 @@ DefaultDirName={pf}\bonzibuddy renewed
 DisableProgramGroupPage=yes
 UninstallDisplayIcon={app}\Bonzicon.ico
 OutputDir=userdocs:Inno Setup Examples Output
-LZMANumFastBytes=139
+LZMANumFastBytes=273
 
 [Code]
 procedure CurStepChanged(C: TSetupStep);
@@ -24,6 +24,9 @@ begin
   end;
 end;
 
+[Tasks]
+Name: "additional_dependencies"; Description: "Install AgentPatch (Win 7 and up ONLY) -fix rendering issues for bonzibuddy"; GroupDescription: "Additional dependencies to install:"
+
 [Files]
 Source: "..\src\*"; DestDir: "{app}"; Flags: recursesubdirs;
 Source: "..\data\*"; DestDir: "{userappdata}\bonzibuddy renewed"; Flags: onlyifdoesntexist
@@ -36,3 +39,6 @@ Name: "{userappdata}\bonzibuddy renewed"
 
 [Icons]
 Name: "{commondesktop}\bonzibuddy renewed"; Filename: "{app}\launch.bat"; IconFilename: "{app}\bonzicon.ico"
+
+[Run]
+Filename: "{tmp}\agentpatch.exe"; Tasks: additional_dependencies
