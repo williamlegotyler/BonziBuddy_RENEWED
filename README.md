@@ -22,4 +22,8 @@ Here are some screenshots of the program running on Windows 2000, Windows xp and
 <img width="1337" height="657" alt="Screenshot (296)" src="https://github.com/user-attachments/assets/42598544-9e65-45ab-b169-d9a287e93ecd" />
 
 # Compiling
-Since this project is primarly made with scripts which don't need compilation, compiling this project is extremely easy as you just need to compile all the scripts into an installer, to do that you will need Inno Setup Compiler version 5.5.8 (as that's one of the last versions supporting windows 2000 and xp).
+
+1) Get AgentPatch from: https://alexparr.net/msagent/agentpatch
+2) Put the "AgentPatch.exe" installer inside bonzibuddy renewed --> dependencies
+3) Get Inno Setup Compiler version 5.5.8 (as that's one of the last versions supporting windows 2000 and xp).
+4) Compile everything into an installer.
