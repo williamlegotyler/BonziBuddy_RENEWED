@@ -13,7 +13,7 @@ For compatibility i specifically target these systems.
 | Windows 2000 | Stable |
 | Windows xp | Stable |
 | Windows 7 | Partial |
-| Windows 10 | Partial |
+| Windows 10 | Stable |
 
 # Screenshots
 Here are some screenshots of the program running on Windows 2000, Windows xp and Windows 7.
