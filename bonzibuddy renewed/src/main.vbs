@@ -10,6 +10,7 @@ factpath=currentpath & "\facts.txt"
 holidaypath=currentpath & "\holidaygreetings.txt"
 inipath=".\Bonzi.ini"
 set ini=objFSO.OpenTextFile(inipath, 1)
+Free_Speaking_Timer=0
 
 ' * Agent Object
 Dim AgentControl
@@ -39,7 +40,9 @@ Do Until ini.AtEndOfStream
     If InStr(line, "=")>0 Then
         parts=Split(line, "=", 2)
         If Trim(LCase(parts(0)))="search_engine" Then
-            search_engine=parts(1)
+            search_engine=Trim(parts(1))
+        ElseIf Trim(LCase(parts(0)))="free_speaking" Then
+            Free_Speaking=Trim(parts(1))
         End If
     End If
 Loop
@@ -314,6 +317,30 @@ Sub AgentIntro()
     Set EndReq = Bonzi.Speak("\mrk=999999999\")
 
     Do
+        If Free_Speaking=1 Then
+            Free_Speaking_Timer=Free_Speaking_timer+1
+            If Free_Speaking_Timer=330 Then
+                Randomize
+                Random_Speak=Int(2*Rnd+1)
+                If Random_Speak=1 Then
+                    Randomize
+                    randomjoke=arrjokes(Int((UBound(arrJokes)+1)*Rnd))
+                    Wscript.sleep 50
+                    Bonzi.Speak "I've got one for you."
+                    Bonzi.Speak randomjoke
+                    Bonzi.Play "Giggle"
+                ElseIf Random_Speak=2 Then
+                    Bonzi.StopAll
+                    Randomize
+                    randomfact=arrfacts(Int((UBound(arrfacts)+1)*Rnd))
+                    Wscript.sleep 50
+                    Bonzi.Play "ReadLookUp"
+                    Bonzi.Speak randomfact
+                    Bonzi.Play "ReadReturn"
+                    End If
+                Free_Speaking_Timer=0
+            End If
+        End if
         WScript.Sleep 1000
     Loop Until ScriptComplete
 End Sub
