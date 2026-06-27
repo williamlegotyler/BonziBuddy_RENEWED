@@ -213,7 +213,7 @@ Sub AgentIntro()
     Bonzi.Play "Write"
     Bonzi.Play "WriteReturn"
     Bonzi.Speak "Since this is the first time we've met, I'd like to tell you a little about myself."
-    Bonzi.Speak "I am your friend and BonziBUDDY renewed! aiming to be better than the original one and especially...being free of malware! as of now my capabilities are very limited, but as the time goes on i'll catch up on my original one and get even better! So don't be afraid to update me!"
+    Bonzi.Speak "I am your friend and BonziBUDDY renewed! aiming to be better than the original one and especially...being free of malware! as of now my capabilities are very limited, but as the time goes on I'll catch up on my original one and get even better! So don't be afraid to update me!"
     Bonzi.Play "PleasedSoft"
     Set ContinueReq = Bonzi.Speak("\mrk=999999999\")
     Do

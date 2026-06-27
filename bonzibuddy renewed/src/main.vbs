@@ -10,7 +10,7 @@ factpath=currentpath & "\facts.txt"
 holidaypath=currentpath & "\holidaygreetings.txt"
 inipath=".\Bonzi.ini"
 set ini=objFSO.OpenTextFile(inipath, 1)
-Free_Speaking_Timer=0
+Idle_Timer=0
 
 ' * Agent Object
 Dim AgentControl
@@ -43,6 +43,8 @@ Do Until ini.AtEndOfStream
             search_engine=Trim(parts(1))
         ElseIf Trim(LCase(parts(0)))="free_speaking" Then
             Free_Speaking=Trim(parts(1))
+        ElseIf Trim(LCase(parts(0)))="free_speaking_interval" Then
+            Free_Speaking_Interval=CInt(Trim(parts(1)))
         End If
     End If
 Loop
@@ -213,6 +215,7 @@ Sub AgentControl_Command(ByVal UserInput)
         Select Case UserInput.Name
         Case "tellajoke"
             Bonzi.StopAll
+            Idle_Timer=0
             Randomize
             randomjoke=arrjokes(Int((UBound(arrJokes)+1)*Rnd))
             Wscript.sleep 50
@@ -221,6 +224,7 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Play "Giggle"
         Case "Browse"
             Bonzi.StopAll
+            Idle_Timer=0
             Bonzi.Speak "OK " & name & "! Where do you want to go?"
             url=InputBox("Enter your url here!", "bonzibuddy renewed")
             if url="" Then Exit Sub
@@ -232,10 +236,12 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Play "Search"
         Case "Speak"
             Bonzi.StopAll
+            Idle_Timer=0
             speaktext=inputbox("Enter what you want me to speak.", "bonzibuddy renewed")
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
             Bonzi.StopAll
+            Idle_Timer=0
             Randomize
             randomfact=arrfacts(Int((UBound(arrfacts)+1)*Rnd))
             Wscript.sleep 50
@@ -244,16 +250,19 @@ Sub AgentControl_Command(ByVal UserInput)
             Bonzi.Play "ReadReturn"
         Case "singasong"
             Bonzi.StopAll
+            Idle_Timer=0
             Wscript.Sleep 50
             Bonzi.play "RestPose"
             x.run "explorer .\Songs"
         Case "info"
             Bonzi.StopAll
+            Idle_Timer=0
             Wscript.Sleep 50
             Bonzi.Play"RestPose"
             MsgBox "BonziBuddy RENEWED version 0.1.7", 0, "Informations about BonziBuddy RENEWED"
         Case "Search"
             Bonzi.StopAll
+            Idle_Timer=0
             Bonzi.Speak "OK!"
             search=inputbox("Enter your search here!", "bonzibuddy renewed")
             if search="" Then Exit Sub
@@ -318,8 +327,8 @@ Sub AgentIntro()
 
     Do
         If Free_Speaking=1 Then
-            Free_Speaking_Timer=Free_Speaking_timer+1
-            If Free_Speaking_Timer=330 Then
+            Idle_Timer=Idle_Timer+1
+            If Idle_Timer=Free_Speaking_Interval Then
                 Randomize
                 Random_Speak=Int(2*Rnd+1)
                 If Random_Speak=1 Then
@@ -330,7 +339,6 @@ Sub AgentIntro()
                     Bonzi.Speak randomjoke
                     Bonzi.Play "Giggle"
                 ElseIf Random_Speak=2 Then
-                    Bonzi.StopAll
                     Randomize
                     randomfact=arrfacts(Int((UBound(arrfacts)+1)*Rnd))
                     Wscript.sleep 50
@@ -338,7 +346,7 @@ Sub AgentIntro()
                     Bonzi.Speak randomfact
                     Bonzi.Play "ReadReturn"
                     End If
-                Free_Speaking_Timer=0
+                Idle_Timer=0
             End If
         End if
         WScript.Sleep 1000
