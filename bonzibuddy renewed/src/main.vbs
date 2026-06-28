@@ -172,6 +172,7 @@ Sub AgentControl_Click(ByVal CharacterID, ByVal Button, ByVal Shift, ByVal X, By
     On Error Resume Next
 
     If Button = 1 Then
+        Idle_Timer=0
         Bonzi.StopAll
         Wscript.Sleep 50
         Bonzi.Play "RestPose"
