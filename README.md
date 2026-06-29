@@ -3,7 +3,7 @@ Welcome to BonziBuddy RENEWED! BonziBuddy RENEWED is a built from the ground up 
 
 As of now it can Speak, Tell Jokes, Tell Amazing Facts, Browse, Sing Songs, Search and even introduce itself! and much more in the future!
 
-<img width="384" height="320" alt="Video Guru_20251114_161046966_002" src="https://github.com/user-attachments/assets/d26ad7d9-d465-41ed-9afa-b87d764f3e3e" />
+<img width="384" height="320" alt="Video Guru_20260629_152541928_002" src="https://github.com/user-attachments/assets/0c149b2e-109d-4ba3-8237-c5866f29b8d2" />
 
 # Compatibility
 For compatibility i specifically target these systems.
