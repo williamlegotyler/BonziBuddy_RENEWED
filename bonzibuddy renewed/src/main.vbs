@@ -45,6 +45,10 @@ Do Until ini.AtEndOfStream
             Free_Speaking=Trim(parts(1))
         ElseIf Trim(LCase(parts(0)))="free_speaking_interval" Then
             Free_Speaking_Interval=CInt(Trim(parts(1)))
+        ElseIf Trim(LCase(parts(0)))="sleeping_timer" Then
+            Idle_Level_Multiplier=CInt(Trim(parts(1)))
+            Sleeping_Timer=Idle_Level_Multiplier*60
+            Idling_Level2_Finish_Time=45*Idle_Level_Multiplier
         End If
     End If
 Loop
@@ -136,6 +140,7 @@ Sub SetCharObj()
 
     Set Bonzi = AgentControl.Characters(BonziID)
     Bonzi.LanguageID = &H409
+    Bonzi.IdleOn=False
 End Sub
 
 Sub AgentControl_RequestComplete(ByVal RequestObject)
@@ -172,10 +177,10 @@ Sub AgentControl_Click(ByVal CharacterID, ByVal Button, ByVal Shift, ByVal X, By
     On Error Resume Next
 
     If Button = 1 Then
-        Idle_Timer=0
         Bonzi.StopAll
         Wscript.Sleep 50
         Bonzi.Play "RestPose"
+        Idle_Timer=0
     End If
 End Sub
 
@@ -327,9 +332,9 @@ Sub AgentIntro()
     Set EndReq = Bonzi.Speak("\mrk=999999999\")
 
     Do
+        Idle_Timer=Idle_Timer+1
         If Free_Speaking=1 Then
-            Idle_Timer=Idle_Timer+1
-            If Idle_Timer=Free_Speaking_Interval Then
+            If (Idle_Timer Mod Free_Speaking_Interval)=0 Then
                 Randomize
                 Random_Speak=Int(2*Rnd+1)
                 If Random_Speak=1 Then
@@ -347,9 +352,104 @@ Sub AgentIntro()
                     Bonzi.Speak randomfact
                     Bonzi.Play "ReadReturn"
                     End If
-                Idle_Timer=0
             End If
-        End if
+        End If
+        If Idle_Timer>=5 And Idle_Timer<=Idling_Level2_Finish_Time Then
+            If (Idle_Timer Mod 13)=0 Then
+                Randomize
+                Random_Idle_Animation=Int(19*Rnd+1)
+                If Random_Idle_Animation=1 Then
+                    Bonzi.Play "Idle1_1"
+                ElseIf Random_Idle_Animation=2 Then
+                    Bonzi.Play "Idle1_3"
+                ElseIf Random_Idle_Animation=3 Then
+                    Bonzi.Play "Idle1_5"
+                ElseIf Random_Idle_Animation=4 Then
+                    Bonzi.Play "Idle1_6"
+                ElseIf Random_Idle_Animation=5 Then
+                    Bonzi.Play "Idle1_9"
+                ElseIf Random_Idle_Animation=6 Then
+                    Bonzi.Play "Idle1_11"
+                ElseIf Random_Idle_Animation=7 Then
+                    Bonzi.Play "Idle1_13"
+                ElseIf Random_Idle_Animation=8 Then
+                    Bonzi.Play "Idle1_14"
+                ElseIf Random_Idle_Animation=9 Then
+                    Bonzi.Play "Idle1_15"
+                ElseIf Random_Idle_Animation=10 Then
+                    Bonzi.Play "Idle1_4"
+                ElseIf Random_Idle_Animation=11 Then
+                    Bonzi.Play "Idle1_4 (2)"
+                ElseIf Random_Idle_Animation=12 Then
+                    Bonzi.Play "Idle1_5 (2)"
+                ElseIf Random_Idle_Animation=13 Then
+                    Bonzi.Play "Idle1_24"
+                ElseIf Random_Idle_Animation=14 Then
+                    Bonzi.Play "Idle1_12"
+                ElseIf Random_Idle_Animation=15 Then
+                    Bonzi.Play "Idle1_25"
+                ElseIf Random_Idle_Animation=16 Then
+                    Bonzi.Play "Idle1_1 (2)"
+                ElseIf Random_Idle_Animation=17 Then
+                    Bonzi.Play "Idle1_1 (3)"
+                ElseIf Random_Idle_Animation=18 Then
+                    Bonzi.Play "Idle1_9 (2)"
+                ElseIf Random_Idle_Animation=19 Then
+                    Bonzi.Play "Idle1_9 (3)"
+                End If
+            End If
+        ElseIf Idle_Timer>Idling_Level2_Finish_Time And Idle_Timer<Sleeping_Timer Then
+            If (Idle_Timer Mod 13)=0 Then
+                Randomize
+                Random_Idle_Animation=Int(21*Rnd+1)
+                If Random_Idle_Animation=1 Then
+                    Bonzi.Play "Idle1_1"
+                ElseIf Random_Idle_Animation=2 Then
+                    Bonzi.Play "Idle1_9"
+                ElseIf Random_Idle_Animation=3 Then
+                    Bonzi.Play "Idle1_3"
+                ElseIf Random_Idle_Animation=4 Then
+                    Bonzi.Play "Idle1_5"
+                ElseIf Random_Idle_Animation=5 Then
+                    Bonzi.Play "Idle1_6"
+                ElseIf Random_Idle_Animation=6 Then
+                    Bonzi.Play "Idle1_4"
+                ElseIf Random_Idle_Animation=7 Then
+                    Bonzi.Play "Idle1_4 (2)"
+                ElseIf Random_Idle_Animation=8 Then
+                    Bonzi.Play "Idle1_5 (2)"
+                ElseIf Random_Idle_Animation=9 Then
+                    Bonzi.Play "Idle1_13"
+                ElseIf Random_Idle_Animation=10 Then
+                    Bonzi.Play "Idle1_12"
+                ElseIf Random_Idle_Animation=11 Then
+                    Bonzi.Play "Idle1_20"
+                ElseIf Random_Idle_Animation=12 Then
+                    Bonzi.Play "Idle1_21"
+                ElseIf Random_Idle_Animation=13 Then
+                    Bonzi.Play "Idle1_24"
+                ElseIf Random_Idle_Animation=14 Then
+                    Bonzi.Play "Idle1_8"
+                ElseIf Random_Idle_Animation=15 Then
+                    Bonzi.Play "Idle1_26"
+                ElseIf Random_Idle_Animation=16 Then
+                    Bonzi.Play "Idle1_14"
+                ElseIf Random_Idle_Animation=17 Then
+                    Bonzi.Play "Idle1_22"
+                ElseIf Random_Idle_Animation=18 Then
+                    Bonzi.Play "Idle1_25"
+                ElseIf Random_Idle_Animation=19 Then
+                    Bonzi.Play "Idle1_7"
+                ElseIf Random_Idle_Animation=20 Then
+                    Bonzi.Play "Idle1_1 (2)"
+                ElseIf Random_Idle_Animation=21 Then
+                    Bonzi.Play "Idle1_1 (3)"
+                End If
+            End If
+        ElseIf Idle_Timer=Sleeping_Timer Then
+            Bonzi.Play "Idle3_1"
+            Bonzi.Play "Idle3_2"
+        End If
         WScript.Sleep 1000
     Loop Until ScriptComplete
 End Sub
