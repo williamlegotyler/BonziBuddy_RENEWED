@@ -1,7 +1,7 @@
 [Setup]
 AppName=Bonzibuddy RENEWED
 AppPublisher=William Tyler (William_Tyler)
-AppVersion=0.1.7
+AppVersion=0.1.8
 AppId={{D7FCEF36-EA7F-4265-868B-3AC766F8FFA6}}
 DefaultDirName={pf}\bonzibuddy renewed
 DisableProgramGroupPage=yes
