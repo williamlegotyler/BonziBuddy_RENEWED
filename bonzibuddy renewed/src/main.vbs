@@ -265,7 +265,7 @@ Sub AgentControl_Command(ByVal UserInput)
             Idle_Timer=0
             Wscript.Sleep 50
             Bonzi.Play"RestPose"
-            MsgBox "BonziBuddy RENEWED version 0.1.7", 0, "Informations about BonziBuddy RENEWED"
+            MsgBox "BonziBuddy RENEWED version 0.1.8", 0, "Informations about BonziBuddy RENEWED"
         Case "Search"
             Bonzi.StopAll
             Idle_Timer=0
