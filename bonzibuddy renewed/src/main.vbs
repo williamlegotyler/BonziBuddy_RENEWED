@@ -327,6 +327,10 @@ Sub AgentIntro()
         Bonzi.Activate
     End If
 
+    Idle_1_Animations=Array("Idle1_1","Idle1_3","Idle1_5","Idle1_6","Idle1_9","Idle1_11","Idle1_13","Idle1_14","Idle1_15","Idle1_4","Idle1_4 (2)","Idle1_5 (2)","Idle1_24","Idle1_12","Idle1_25","Idle1_1 (2)","Idle1_1 (3)","Idle1_9 (2)","Idle1_9 (3)")
+    Idle_2_Animations=Array("Idle1_1","Idle1_9","Idle1_3","Idle1_5","Idle1_6","Idle1_4","Idle1_4 (2)","Idle1_5 (2)","Idle1_13","Idle1_12","Idle1_20","Idle1_21","Idle1_24","Idle1_8","Idle1_26","Idle1_14","Idle1_22","Idle1_25","Idle1_7","Idle1_1 (2)","Idle1_1 (3)")
+
+
     ' *** END MASH USER SCRIPT ***
 
     Set EndReq = Bonzi.Speak("\mrk=999999999\")
@@ -357,94 +361,12 @@ Sub AgentIntro()
         If Idle_Timer>=5 And Idle_Timer<=Idling_Level2_Finish_Time Then
             If (Idle_Timer Mod 13)=0 Then
                 Randomize
-                Random_Idle_Animation=Int(19*Rnd+1)
-                If Random_Idle_Animation=1 Then
-                    Bonzi.Play "Idle1_1"
-                ElseIf Random_Idle_Animation=2 Then
-                    Bonzi.Play "Idle1_3"
-                ElseIf Random_Idle_Animation=3 Then
-                    Bonzi.Play "Idle1_5"
-                ElseIf Random_Idle_Animation=4 Then
-                    Bonzi.Play "Idle1_6"
-                ElseIf Random_Idle_Animation=5 Then
-                    Bonzi.Play "Idle1_9"
-                ElseIf Random_Idle_Animation=6 Then
-                    Bonzi.Play "Idle1_11"
-                ElseIf Random_Idle_Animation=7 Then
-                    Bonzi.Play "Idle1_13"
-                ElseIf Random_Idle_Animation=8 Then
-                    Bonzi.Play "Idle1_14"
-                ElseIf Random_Idle_Animation=9 Then
-                    Bonzi.Play "Idle1_15"
-                ElseIf Random_Idle_Animation=10 Then
-                    Bonzi.Play "Idle1_4"
-                ElseIf Random_Idle_Animation=11 Then
-                    Bonzi.Play "Idle1_4 (2)"
-                ElseIf Random_Idle_Animation=12 Then
-                    Bonzi.Play "Idle1_5 (2)"
-                ElseIf Random_Idle_Animation=13 Then
-                    Bonzi.Play "Idle1_24"
-                ElseIf Random_Idle_Animation=14 Then
-                    Bonzi.Play "Idle1_12"
-                ElseIf Random_Idle_Animation=15 Then
-                    Bonzi.Play "Idle1_25"
-                ElseIf Random_Idle_Animation=16 Then
-                    Bonzi.Play "Idle1_1 (2)"
-                ElseIf Random_Idle_Animation=17 Then
-                    Bonzi.Play "Idle1_1 (3)"
-                ElseIf Random_Idle_Animation=18 Then
-                    Bonzi.Play "Idle1_9 (2)"
-                ElseIf Random_Idle_Animation=19 Then
-                    Bonzi.Play "Idle1_9 (3)"
-                End If
+                Bonzi.Play Idle_1_Animations(Int(Rnd*(Ubound(Idle_1_Animations)+1)))
             End If
         ElseIf Idle_Timer>Idling_Level2_Finish_Time And Idle_Timer<Sleeping_Timer Then
             If (Idle_Timer Mod 13)=0 Then
                 Randomize
-                Random_Idle_Animation=Int(21*Rnd+1)
-                If Random_Idle_Animation=1 Then
-                    Bonzi.Play "Idle1_1"
-                ElseIf Random_Idle_Animation=2 Then
-                    Bonzi.Play "Idle1_9"
-                ElseIf Random_Idle_Animation=3 Then
-                    Bonzi.Play "Idle1_3"
-                ElseIf Random_Idle_Animation=4 Then
-                    Bonzi.Play "Idle1_5"
-                ElseIf Random_Idle_Animation=5 Then
-                    Bonzi.Play "Idle1_6"
-                ElseIf Random_Idle_Animation=6 Then
-                    Bonzi.Play "Idle1_4"
-                ElseIf Random_Idle_Animation=7 Then
-                    Bonzi.Play "Idle1_4 (2)"
-                ElseIf Random_Idle_Animation=8 Then
-                    Bonzi.Play "Idle1_5 (2)"
-                ElseIf Random_Idle_Animation=9 Then
-                    Bonzi.Play "Idle1_13"
-                ElseIf Random_Idle_Animation=10 Then
-                    Bonzi.Play "Idle1_12"
-                ElseIf Random_Idle_Animation=11 Then
-                    Bonzi.Play "Idle1_20"
-                ElseIf Random_Idle_Animation=12 Then
-                    Bonzi.Play "Idle1_21"
-                ElseIf Random_Idle_Animation=13 Then
-                    Bonzi.Play "Idle1_24"
-                ElseIf Random_Idle_Animation=14 Then
-                    Bonzi.Play "Idle1_8"
-                ElseIf Random_Idle_Animation=15 Then
-                    Bonzi.Play "Idle1_26"
-                ElseIf Random_Idle_Animation=16 Then
-                    Bonzi.Play "Idle1_14"
-                ElseIf Random_Idle_Animation=17 Then
-                    Bonzi.Play "Idle1_22"
-                ElseIf Random_Idle_Animation=18 Then
-                    Bonzi.Play "Idle1_25"
-                ElseIf Random_Idle_Animation=19 Then
-                    Bonzi.Play "Idle1_7"
-                ElseIf Random_Idle_Animation=20 Then
-                    Bonzi.Play "Idle1_1 (2)"
-                ElseIf Random_Idle_Animation=21 Then
-                    Bonzi.Play "Idle1_1 (3)"
-                End If
+                Bonzi.Play Idle_1_Animations(Int(Rnd*(Ubound(Idle_2_Animations)+1)))
             End If
         ElseIf Idle_Timer=Sleeping_Timer Then
             Bonzi.Play "Idle3_1"
