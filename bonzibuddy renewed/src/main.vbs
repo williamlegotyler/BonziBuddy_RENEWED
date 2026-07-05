@@ -281,7 +281,6 @@ Sub AgentControl_Command(ByVal UserInput)
 
         If UserInput.Name = "Exit" Then
             Bonzi.StopAll
-            Bonzi.Play "Wave"
             Bonzi.Speak "Hope to see you soon, " & name & "!"
             Set HideReq = Bonzi.Hide()
         End If
@@ -337,7 +336,24 @@ Sub AgentIntro()
     Set EndReq = Bonzi.Speak("\mrk=999999999\")
 
     Do
-        Idle_Timer=Idle_Timer+1
+        If Idle_Timer>=5 And Idle_Timer<=Idling_Level2_Finish_Time Then
+            If (Idle_Timer Mod 13)=0 Then
+                Randomize
+                Bonzi.Play Idle_1_Animations(Int(Rnd*(Ubound(Idle_1_Animations)+1)))
+            End If
+        ElseIf Idle_Timer>Idling_Level2_Finish_Time And Idle_Timer<Sleeping_Timer Then
+            If (Idle_Timer Mod 13)=0 Then
+                Randomize
+                Bonzi.Play Idle_1_Animations(Int(Rnd*(Ubound(Idle_2_Animations)+1)))
+            End If
+        ElseIf Idle_Timer=Sleeping_Timer Then
+            Bonzi.Play "Idle3_1"
+            Bonzi.Play "Idle3_2"
+            Wscript.Echo Idle_Timer
+        End If
+        If Not Idle_Timer=Sleeping_Timer Then
+            Idle_Timer=Idle_Timer+1
+        End If
         If Free_Speaking=1 Then
             If (Idle_Timer Mod Free_Speaking_Interval)=0 Then
                 Randomize
@@ -356,22 +372,8 @@ Sub AgentIntro()
                     Bonzi.Play "ReadLookUp"
                     Bonzi.Speak randomfact
                     Bonzi.Play "ReadReturn"
-                    End If
+                End If
             End If
-        End If
-        If Idle_Timer>=5 And Idle_Timer<=Idling_Level2_Finish_Time Then
-            If (Idle_Timer Mod 13)=0 Then
-                Randomize
-                Bonzi.Play Idle_1_Animations(Int(Rnd*(Ubound(Idle_1_Animations)+1)))
-            End If
-        ElseIf Idle_Timer>Idling_Level2_Finish_Time And Idle_Timer<Sleeping_Timer Then
-            If (Idle_Timer Mod 13)=0 Then
-                Randomize
-                Bonzi.Play Idle_1_Animations(Int(Rnd*(Ubound(Idle_2_Animations)+1)))
-            End If
-        ElseIf Idle_Timer=Sleeping_Timer Then
-            Bonzi.Play "Idle3_1"
-            Bonzi.Play "Idle3_2"
         End If
         WScript.Sleep 1000
     Loop Until ScriptComplete
