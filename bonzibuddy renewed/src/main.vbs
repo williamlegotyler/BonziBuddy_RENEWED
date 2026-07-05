@@ -349,7 +349,6 @@ Sub AgentIntro()
         ElseIf Idle_Timer=Sleeping_Timer Then
             Bonzi.Play "Idle3_1"
             Bonzi.Play "Idle3_2"
-            Wscript.Echo Idle_Timer
         End If
         If Not Idle_Timer=Sleeping_Timer Then
             Idle_Timer=Idle_Timer+1
