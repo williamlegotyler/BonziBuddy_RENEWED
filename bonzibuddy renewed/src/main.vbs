@@ -281,6 +281,7 @@ Sub AgentControl_Command(ByVal UserInput)
 
         If UserInput.Name = "Exit" Then
             Bonzi.StopAll
+            Bonzi.Play "Wave"
             Bonzi.Speak "Hope to see you soon, " & name & "!"
             Set HideReq = Bonzi.Hide()
         End If
