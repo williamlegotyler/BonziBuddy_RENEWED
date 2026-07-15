@@ -173,6 +173,26 @@ Sub LoadError()
     MsgBox strMsg, 48
 End Sub
 
+Sub tellajoke()
+    Bonzi.StopAll
+    Randomize
+    randomjoke=arrjokes(Int((UBound(arrJokes)+1)*Rnd))
+    Wscript.sleep 50
+    Bonzi.Speak "I've got one for you."
+    Bonzi.Speak randomjoke
+    Bonzi.Play "Giggle"
+End Sub
+
+Sub tellanamazingfact()
+    Bonzi.StopAll
+    Randomize
+    randomfact=arrfacts(Int((UBound(arrfacts)+1)*Rnd))
+    Wscript.sleep 50
+    Bonzi.Play "ReadLookUp"
+    Bonzi.Speak randomfact
+    Bonzi.Play "ReadReturn"
+End Sub
+
 Sub AgentControl_Click(ByVal CharacterID, ByVal Button, ByVal Shift, ByVal X, ByVal Y)
     On Error Resume Next
 
@@ -220,14 +240,8 @@ Sub AgentControl_Command(ByVal UserInput)
         ' *** BEGIN MASH USER COMMANDS ***
         Select Case UserInput.Name
         Case "tellajoke"
-            Bonzi.StopAll
             Idle_Timer=0
-            Randomize
-            randomjoke=arrjokes(Int((UBound(arrJokes)+1)*Rnd))
-            Wscript.sleep 50
-            Bonzi.Speak "I've got one for you."
-            Bonzi.Speak randomjoke
-            Bonzi.Play "Giggle"
+            Call tellajoke()
         Case "Browse"
             Bonzi.StopAll
             Idle_Timer=0
@@ -246,14 +260,8 @@ Sub AgentControl_Command(ByVal UserInput)
             speaktext=inputbox("Enter what you want me to speak.", "bonzibuddy renewed")
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
-            Bonzi.StopAll
             Idle_Timer=0
-            Randomize
-            randomfact=arrfacts(Int((UBound(arrfacts)+1)*Rnd))
-            Wscript.sleep 50
-            Bonzi.Play "ReadLookUp"
-            Bonzi.Speak randomfact
-            Bonzi.Play "ReadReturn"
+            Call tellanamazingfact()
         Case "singasong"
             Bonzi.StopAll
             Idle_Timer=0
@@ -359,19 +367,9 @@ Sub AgentIntro()
                 Randomize
                 Random_Speak=Int(2*Rnd+1)
                 If Random_Speak=1 Then
-                    Randomize
-                    randomjoke=arrjokes(Int((UBound(arrJokes)+1)*Rnd))
-                    Wscript.sleep 50
-                    Bonzi.Speak "I've got one for you."
-                    Bonzi.Speak randomjoke
-                    Bonzi.Play "Giggle"
+                    Call tellajoke()
                 ElseIf Random_Speak=2 Then
-                    Randomize
-                    randomfact=arrfacts(Int((UBound(arrfacts)+1)*Rnd))
-                    Wscript.sleep 50
-                    Bonzi.Play "ReadLookUp"
-                    Bonzi.Speak randomfact
-                    Bonzi.Play "ReadReturn"
+                    Call tellanamazingfact()
                 End If
             End If
         End If
