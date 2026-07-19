@@ -178,6 +178,7 @@ Sub tellajoke()
     Randomize
     randomjoke=arrjokes(Int((UBound(arrJokes)+1)*Rnd))
     Wscript.sleep 50
+    Bonzi.play "RestPose"
     Bonzi.Speak "I've got one for you."
     Bonzi.Speak randomjoke
     Bonzi.Play "Giggle"
@@ -245,6 +246,8 @@ Sub AgentControl_Command(ByVal UserInput)
         Case "Browse"
             Bonzi.StopAll
             Idle_Timer=0
+            Wscript.Sleep 50
+            Bonzi.play "RestPose"
             Bonzi.Speak "OK " & name & "! Where do you want to go?"
             url=InputBox("Enter your url here!", "bonzibuddy renewed")
             if url="" Then Exit Sub
@@ -257,6 +260,8 @@ Sub AgentControl_Command(ByVal UserInput)
         Case "Speak"
             Bonzi.StopAll
             Idle_Timer=0
+            Wscript.Sleep 50
+            Bonzi.play "RestPose"
             speaktext=inputbox("Enter what you want me to speak.", "bonzibuddy renewed")
             Bonzi.Speak SpeakText
         Case "tellanamazingfact"
@@ -277,6 +282,8 @@ Sub AgentControl_Command(ByVal UserInput)
         Case "Search"
             Bonzi.StopAll
             Idle_Timer=0
+            Wscript.Sleep 50
+            Bonzi.Play"RestPose"
             Bonzi.Speak "OK!"
             search=inputbox("Enter your search here!", "bonzibuddy renewed")
             if search="" Then Exit Sub
