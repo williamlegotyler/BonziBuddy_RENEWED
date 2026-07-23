@@ -11,6 +11,18 @@ holidaypath=currentpath & "\holidaygreetings.txt"
 inipath=".\Bonzi.ini"
 set ini=objFSO.OpenTextFile(inipath, 1)
 Idle_Timer=0
+Excluded_Jokes=Array()
+Excluded_Facts=Array()
+arr_jokenumber=Array()
+arr_factnumber=Array()
+firstrunjokes=1
+firstrunfacts=1
+d=0
+a=0
+e=0
+f=0
+Excluded_Jokes_Length=0
+Excluded_Facts_Length=0
 
 ' * Agent Object
 Dim AgentControl
@@ -27,6 +39,10 @@ Dim HideReq
 Dim Req
 Dim ScriptComplete
 Dim envVar
+Dim Random_JokeNumber
+Dim Excluded_Jokes
+Dim Random_FactNumber
+Dim Excluded_Facts
 
 envVar="process_" & Wscript.scriptName
 
@@ -49,6 +65,10 @@ Do Until ini.AtEndOfStream
             Idle_Level_Multiplier=CInt(Trim(parts(1)))
             Sleeping_Timer=Idle_Level_Multiplier*60
             Idling_Level2_Finish_Time=45*Idle_Level_Multiplier
+        ElseIf Trim(LCase(parts(0)))="anti_joke_repetition" Then
+            Joke_Memory_Length=CInt(Trim(parts(1)))
+        ElseIf Trim(LCase(parts(0)))="anti_fact_repetition" Then
+            Fact_Memory_Length=CInt(Trim(parts(1)))
         End If
     End If
 Loop
@@ -59,6 +79,11 @@ Do Until objFile.AtEndOfStream
     arrjokes(UBound(arrjokes))=objFile.ReadLine
 Loop
 objFile.Close
+Joke_Number=Ubound(arrjokes)
+If Joke_Memory_Length>Joke_Number-1 Then
+    Joke_Memory_Length=Joke_Number-1
+End If
+Redim Preserve Excluded_Jokes(Joke_Memory_Length-1)
 Set objFile=objFSO.OpenTextFile(factpath, 1)
 arrfacts=Array()
 Do Until objFile.AtEndOfStream
@@ -66,6 +91,11 @@ Do Until objFile.AtEndOfStream
     arrfacts(UBound(arrfacts))=objFile.ReadLine
 Loop
 objFile.Close
+Fact_Number=Ubound(arrfacts)
+If Fact_Memory_Length>Fact_Number-1 Then
+    Fact_Memory_Length=Fact_Number-1
+End If
+Redim Preserve Excluded_Facts(Fact_Memory_Length-1)
 
 ' * Initialize
 UsedChars = "Bonzi"
@@ -174,23 +204,97 @@ Sub LoadError()
 End Sub
 
 Sub tellajoke()
-    Bonzi.StopAll
-    Randomize
-    randomjoke=arrjokes(Int((UBound(arrJokes)+1)*Rnd))
+    If Joke_Memory_Length>0 Then
+        Randomize
+        If firstrunjokes=1 Then
+            Random_JokeNumber=Int((Joke_Number+1)*Rnd)
+            firstrunjokes=0
+        Else
+            Random_JokeNumber=arr_jokenumber(Int(((Ubound(arr_jokenumber)+1)*Rnd)))
+        End If
+        Erase arr_jokenumber
+        If d=Joke_Memory_Length Then
+            d=0
+        End If
+        Excluded_Jokes(d)=Random_JokeNumber
+        If Excluded_Jokes_Length<Joke_Memory_Length Then
+            Excluded_Jokes_Length=Excluded_Jokes_Length+1
+        End If
+        For b=0 to Joke_Number
+            match=0
+            For c=0 to Excluded_Jokes_Length-1
+                If b<>Excluded_Jokes(c) Then
+                    match=0
+                Else
+                    match=1
+                    Exit For
+                End If
+            Next
+            If match=0 Then
+                Redim Preserve arr_jokenumber(a)
+                arr_jokenumber(a)=b
+                a=a+1
+            End If
+        Next
+        d=d+1
+        a=0
+        Bonzi.StopAll
+        RandomJoke=arrjokes(Random_JokeNumber)
+    ElseIf Joke_Memory_Length=0 then
+        Randomize
+        RandomJoke=arrjokes(Int((UBound(arrJokes)+1)*Rnd))
+    End If
     Wscript.sleep 50
     Bonzi.play "RestPose"
     Bonzi.Speak "I've got one for you."
-    Bonzi.Speak randomjoke
+    Bonzi.Speak RandomJoke
     Bonzi.Play "Giggle"
 End Sub
 
 Sub tellanamazingfact()
-    Bonzi.StopAll
-    Randomize
-    randomfact=arrfacts(Int((UBound(arrfacts)+1)*Rnd))
+    If Fact_Memory_Length>0 Then
+        Randomize
+        If firstrunfacts=1 Then
+            Random_FactNumber=Int((Fact_Number+1)*Rnd)
+            firstrunfacts=0
+        Else
+            Random_FactNumber=arr_Factnumber(Int(((Ubound(arr_Factnumber)+1)*Rnd)))
+        End If
+        Erase arr_Factnumber
+        If e=Fact_Memory_Length Then
+            e=0
+        End If
+        Excluded_Facts(e)=Random_FactNumber
+        If Excluded_Facts_Length<Fact_Memory_Length Then
+            Excluded_Facts_Length=Excluded_Facts_Length+1
+        End If
+        For b=0 to Fact_Number
+            match=0
+            For c=0 to Excluded_Facts_Length-1
+                If b<>Excluded_Facts(c) Then
+                    match=0
+                Else
+                    match=1
+                    Exit For
+                End If
+            Next
+            If match=0 Then
+                Redim Preserve arr_Factnumber(f)
+                arr_Factnumber(f)=b
+                f=f+1
+            End If
+        Next
+        e=e+1
+        f=0
+        Bonzi.StopAll
+        RandomFact=arrfacts(Random_FactNumber)
+    ElseIf Fact_Memory_Length=0 then
+        Randomize
+        RandomFact=arrfacts(Int((UBound(arrfacts)+1)*Rnd))
+    End If
     Wscript.sleep 50
     Bonzi.Play "ReadLookUp"
-    Bonzi.Speak randomfact
+    Bonzi.Speak RandomFact
     Bonzi.Play "ReadReturn"
 End Sub
 
