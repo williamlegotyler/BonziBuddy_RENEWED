@@ -204,6 +204,7 @@ Sub LoadError()
 End Sub
 
 Sub tellajoke()
+    Bonzi.StopAll
     If Joke_Memory_Length>0 Then
         Randomize
         If firstrunjokes=1 Then
@@ -238,7 +239,6 @@ Sub tellajoke()
         Next
         d=d+1
         a=0
-        Bonzi.StopAll
         RandomJoke=arrjokes(Random_JokeNumber)
     ElseIf Joke_Memory_Length=0 then
         Randomize
@@ -247,11 +247,13 @@ Sub tellajoke()
     Wscript.sleep 50
     Bonzi.play "RestPose"
     Bonzi.Speak "I've got one for you."
+    Bonzi.Play "Explain"
     Bonzi.Speak RandomJoke
     Bonzi.Play "Giggle"
 End Sub
 
 Sub tellanamazingfact()
+    Bonzi.StopAll
     If Fact_Memory_Length>0 Then
         Randomize
         If firstrunfacts=1 Then
@@ -286,7 +288,6 @@ Sub tellanamazingfact()
         Next
         e=e+1
         f=0
-        Bonzi.StopAll
         RandomFact=arrfacts(Random_FactNumber)
     ElseIf Fact_Memory_Length=0 then
         Randomize
