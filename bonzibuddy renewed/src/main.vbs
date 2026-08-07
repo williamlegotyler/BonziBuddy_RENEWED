@@ -69,6 +69,12 @@ Do Until ini.AtEndOfStream
             Joke_Memory_Length=CInt(Trim(parts(1)))
         ElseIf Trim(LCase(parts(0)))="anti_fact_repetition" Then
             Fact_Memory_Length=CInt(Trim(parts(1)))
+        ElseIf Trim(LCase(parts(0)))="web_browser_path" Then
+            If Trim(LCase(parts(1)))="default" Then
+                Web_Browser_Path="default"
+            Else
+                Web_Browser_Path="""" & Trim(LCase(parts(1))) & """"
+            End If
         End If
     End If
 Loop
@@ -360,7 +366,12 @@ Sub AgentControl_Command(ByVal UserInput)
             url="https://" & url
             End If
             url=Replace(url, " ", "")
-            x.run url, 0, False
+            If Web_Browser_Path="default" Then
+                x.run url, 0, False
+            Else
+                BrowseCmd=Web_Browser_Path & " " & url
+                x.run BrowseCmd, 0, False
+            End If
             Bonzi.Play "Search"
         Case "Speak"
             Bonzi.StopAll
@@ -394,7 +405,12 @@ Sub AgentControl_Command(ByVal UserInput)
             if search="" Then Exit Sub
             searchfiltered=Replace(search, " ", "+")
             searchurl=search_engine & searchfiltered
-            x.run searchurl, 0, False
+            If Web_Browser_Path="default" Then
+                x.run searchurl, 0, False
+            Else
+                SearchCmd=Web_Browser_Path & " " & searchurl
+                x.run SearchCmd, 0, False
+            End If
             Bonzi.Play "Search"
         End Select
         ' *** END MASH USER COMMANDS ***
