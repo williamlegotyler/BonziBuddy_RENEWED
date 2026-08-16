@@ -23,6 +23,7 @@ e=0
 f=0
 Excluded_Jokes_Length=0
 Excluded_Facts_Length=0
+Loaded=0
 
 ' * Agent Object
 Dim AgentControl
@@ -43,6 +44,12 @@ Dim Random_JokeNumber
 Dim Excluded_Jokes
 Dim Random_FactNumber
 Dim Excluded_Facts
+Dim arrjokes
+Dim arrfacts
+Dim Joke_Number
+Dim Fact_Number
+Dim Joke_Memory_Length
+Dim Fact_Memory_Length
 
 envVar="process_" & Wscript.scriptName
 
@@ -75,9 +82,17 @@ Do Until ini.AtEndOfStream
             Else
                 Web_Browser_Path="""" & Trim(LCase(parts(1))) & """"
             End If
+        ElseIf Trim(LCase(parts(0)))="startup_jokes_and_facts_loading" Then
+            startup_jokes_and_facts_loading=CInt(Trim(parts(1)))
         End If
     End If
 Loop
+
+If startup_jokes_and_facts_loading=1 Then
+    Call LoadJokesAndFacts
+End If
+
+Sub LoadJokesAndFacts()
 Set objFile=objFSO.OpenTextFile(jokepath, 1)
 arrjokes=Array()
 Do Until objFile.AtEndOfStream
@@ -102,6 +117,7 @@ If Fact_Memory_Length>Fact_Number-1 Then
     Fact_Memory_Length=Fact_Number-1
 End If
 Redim Preserve Excluded_Facts(Fact_Memory_Length-1)
+End Sub
 
 ' * Initialize
 UsedChars = "Bonzi"
@@ -210,6 +226,9 @@ Sub LoadError()
 End Sub
 
 Sub tellajoke()
+    If startup_jokes_and_facts_loading=0 And Loaded=0 Then
+        Call LoadJokesAndFacts
+    End If
     Bonzi.StopAll
     If Joke_Memory_Length>0 Then
         Randomize
@@ -259,6 +278,9 @@ Sub tellajoke()
 End Sub
 
 Sub tellanamazingfact()
+    If startup_jokes_and_facts_loading=0 And Loaded=0 Then
+        Call LoadJokesAndFacts
+    End If
     Bonzi.StopAll
     If Fact_Memory_Length>0 Then
         Randomize
