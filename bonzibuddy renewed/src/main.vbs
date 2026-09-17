@@ -11,10 +11,8 @@ holidaypath=currentpath & "\holidaygreetings.txt"
 inipath=".\Bonzi.ini"
 set ini=objFSO.OpenTextFile(inipath, 1)
 Idle_Timer=0
-Excluded_Jokes=Array()
-Excluded_Facts=Array()
-arr_jokenumber=Array()
-arr_factnumber=Array()
+arr_jokenumbers=Array()
+arr_factnumbers=Array()
 firstrunjokes=1
 firstrunfacts=1
 d=0
@@ -41,9 +39,7 @@ Dim Req
 Dim ScriptComplete
 Dim envVar
 Dim Random_JokeNumber
-Dim Excluded_Jokes
 Dim Random_FactNumber
-Dim Excluded_Facts
 Dim arrjokes
 Dim arrfacts
 Dim Joke_Number
@@ -117,6 +113,15 @@ If Fact_Memory_Length>Fact_Number-1 Then
     Fact_Memory_Length=Fact_Number-1
 End If
 Redim Preserve Excluded_Facts(Fact_Memory_Length-1)
+
+Redim arr_jokenumbers(Joke_Number+Joke_Memory_Length)
+For a=Joke_Memory_Length To Ubound(arr_jokenumbers)
+    arr_jokenumbers(a)=a-Joke_Memory_Length
+Next
+Redim arr_factnumbers(Fact_Number+Fact_Memory_Length)
+For a=Fact_Memory_Length To Ubound(arr_factnumbers)
+    arr_factnumbers(a)=a-Fact_Memory_Length
+Next
 End Sub
 
 ' * Initialize
@@ -232,39 +237,20 @@ Sub tellajoke()
     Bonzi.StopAll
     If Joke_Memory_Length>0 Then
         Randomize
-        If firstrunjokes=1 Then
-            Random_JokeNumber=Int((Joke_Number+1)*Rnd)
-            firstrunjokes=0
+        Random_JokeNumber=Int((Ubound(arr_jokenumbers)-Joke_Memory_Length+1)*Rnd+Joke_Memory_Length)
+        If d<Joke_Memory_Length Then
+            arr_jokenumbers(d)=arr_jokenumbers(Random_JokeNumber)
+            RandomJoke=arrjokes(arr_jokenumbers(Random_JokeNumber))
+            arr_jokenumbers(Random_JokeNumber)=arr_jokenumbers(Ubound(arr_jokenumbers))
+            Redim Preserve arr_jokenumbers(Ubound(arr_jokenumbers)-1)
         Else
-            Random_JokeNumber=arr_jokenumber(Int(((Ubound(arr_jokenumber)+1)*Rnd)))
+            a=d Mod Joke_Memory_Length
+            Picked_JokeNumber=arr_jokenumbers(Random_JokeNumber)
+            RandomJoke=arrjokes(arr_jokenumbers(Random_JokeNumber))
+            arr_jokenumbers(Random_JokeNumber)=arr_jokenumbers(a)
+            arr_jokenumbers(a)=Picked_JokeNumber
         End If
-        Erase arr_jokenumber
-        If d=Joke_Memory_Length Then
-            d=0
-        End If
-        Excluded_Jokes(d)=Random_JokeNumber
-        If Excluded_Jokes_Length<Joke_Memory_Length Then
-            Excluded_Jokes_Length=Excluded_Jokes_Length+1
-        End If
-        For b=0 to Joke_Number
-            match=0
-            For c=0 to Excluded_Jokes_Length-1
-                If b<>Excluded_Jokes(c) Then
-                    match=0
-                Else
-                    match=1
-                    Exit For
-                End If
-            Next
-            If match=0 Then
-                Redim Preserve arr_jokenumber(a)
-                arr_jokenumber(a)=b
-                a=a+1
-            End If
-        Next
         d=d+1
-        a=0
-        RandomJoke=arrjokes(Random_JokeNumber)
     ElseIf Joke_Memory_Length=0 then
         Randomize
         RandomJoke=arrjokes(Int((UBound(arrJokes)+1)*Rnd))
@@ -282,44 +268,25 @@ Sub tellanamazingfact()
         Call LoadJokesAndFacts
     End If
     Bonzi.StopAll
-    If Fact_Memory_Length>0 Then
+    If Joke_Memory_Length>0 Then
         Randomize
-        If firstrunfacts=1 Then
-            Random_FactNumber=Int((Fact_Number+1)*Rnd)
-            firstrunfacts=0
+        Random_FactNumber=Int((Ubound(arr_Factnumbers)-Fact_Memory_Length+1)*Rnd+Fact_Memory_Length)
+        If d<Fact_Memory_Length Then
+            arr_Factnumbers(d)=arr_Factnumbers(Random_FactNumber)
+            RandomFact=arrFacts(arr_Factnumbers(Random_FactNumber))
+            arr_Factnumbers(Random_FactNumber)=arr_Factnumbers(Ubound(arr_Factnumbers))
+            Redim Preserve arr_Factnumbers(Ubound(arr_Factnumbers)-1)
         Else
-            Random_FactNumber=arr_Factnumber(Int(((Ubound(arr_Factnumber)+1)*Rnd)))
+            a=d Mod Fact_Memory_Length
+            Picked_FactNumber=arr_Factnumbers(Random_FactNumber)
+            RandomFact=arrFacts(arr_Factnumbers(Random_FactNumber))
+            arr_Factnumbers(Random_FactNumber)=arr_Factnumbers(a)
+            arr_Factnumbers(a)=Picked_FactNumber
         End If
-        Erase arr_Factnumber
-        If e=Fact_Memory_Length Then
-            e=0
-        End If
-        Excluded_Facts(e)=Random_FactNumber
-        If Excluded_Facts_Length<Fact_Memory_Length Then
-            Excluded_Facts_Length=Excluded_Facts_Length+1
-        End If
-        For b=0 to Fact_Number
-            match=0
-            For c=0 to Excluded_Facts_Length-1
-                If b<>Excluded_Facts(c) Then
-                    match=0
-                Else
-                    match=1
-                    Exit For
-                End If
-            Next
-            If match=0 Then
-                Redim Preserve arr_Factnumber(f)
-                arr_Factnumber(f)=b
-                f=f+1
-            End If
-        Next
-        e=e+1
-        f=0
-        RandomFact=arrfacts(Random_FactNumber)
+        d=d+1
     ElseIf Fact_Memory_Length=0 then
         Randomize
-        RandomFact=arrfacts(Int((UBound(arrfacts)+1)*Rnd))
+        RandomFact=arrFacts(Int((UBound(arrFacts)+1)*Rnd))
     End If
     Wscript.sleep 50
     Bonzi.Play "ReadLookUp"
