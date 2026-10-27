@@ -462,19 +462,21 @@ Sub AgentIntro()
     Set EndReq = Bonzi.Speak("\mrk=999999999\")
 
     Do
-        If Idle_Timer>=5 And Idle_Timer<=Idling_Level2_Finish_Time Then
-            If (Idle_Timer Mod 13)=0 Then
-                Randomize
-                Bonzi.Play Idle_1_Animations(Int(Rnd*(Ubound(Idle_1_Animations)+1)))
+        If IdleAnimation_Request.Status<>4 And IdleAnimation_Request.Status<>2 Then
+            If Idle_Timer>=5 And Idle_Timer<=Idling_Level2_Finish_Time Then
+                If (Idle_Timer Mod 13)=0 Then
+                    Randomize
+                    Set IdleAnimation_Request=Bonzi.Play(Idle_1_Animations(Int(Rnd*(Ubound(Idle_1_Animations)+1))))
+                End If
+            ElseIf Idle_Timer>Idling_Level2_Finish_Time And Idle_Timer<Sleeping_Timer Then
+                If (Idle_Timer Mod 13)=0 Then
+                    Randomize
+                    Set IdleAnimation_Request=Bonzi.Play(Idle_1_Animations(Int(Rnd*(Ubound(Idle_2_Animations)+1))))
+                End If
+            ElseIf Idle_Timer=Sleeping_Timer Then
+                Bonzi.Play "Idle3_1"
+                Set IdleAnimation_Request=Bonzi.Play("Idle3_2")
             End If
-        ElseIf Idle_Timer>Idling_Level2_Finish_Time And Idle_Timer<Sleeping_Timer Then
-            If (Idle_Timer Mod 13)=0 Then
-                Randomize
-                Bonzi.Play Idle_1_Animations(Int(Rnd*(Ubound(Idle_2_Animations)+1)))
-            End If
-        ElseIf Idle_Timer=Sleeping_Timer Then
-            Bonzi.Play "Idle3_1"
-            Bonzi.Play "Idle3_2"
         End If
         If Not Idle_Timer=Sleeping_Timer Then
             Idle_Timer=Idle_Timer+1
