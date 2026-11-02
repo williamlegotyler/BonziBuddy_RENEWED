@@ -80,6 +80,8 @@ Do Until ini.AtEndOfStream
             End If
         ElseIf Trim(LCase(parts(0)))="startup_jokes_and_facts_loading" Then
             startup_jokes_and_facts_loading=CInt(Trim(parts(1)))
+        ElseIf Trim(LCase(parts(0)))="idle_animation_interval" Then
+            Idle_Animation_Interval=CInt(Trim(parts(1)))
         End If
     End If
 Loop
@@ -464,12 +466,12 @@ Sub AgentIntro()
     Do
         If IdleAnimation_Request.Status<>4 And IdleAnimation_Request.Status<>2 Then
             If Idle_Timer>=5 And Idle_Timer<=Idling_Level2_Finish_Time Then
-                If (Idle_Timer Mod 13)=0 Then
+                If (Idle_Timer Mod Idle_Animation_Interval)=0 Then
                     Randomize
                     Set IdleAnimation_Request=Bonzi.Play(Idle_1_Animations(Int(Rnd*(Ubound(Idle_1_Animations)+1))))
                 End If
             ElseIf Idle_Timer>Idling_Level2_Finish_Time And Idle_Timer<Sleeping_Timer Then
-                If (Idle_Timer Mod 13)=0 Then
+                If (Idle_Timer Mod Idle_Animation_Interval)=0 Then
                     Randomize
                     Set IdleAnimation_Request=Bonzi.Play(Idle_1_Animations(Int(Rnd*(Ubound(Idle_2_Animations)+1))))
                 End If
