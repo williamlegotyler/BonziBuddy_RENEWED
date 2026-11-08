@@ -409,7 +409,8 @@ Sub AgentControl_Command(ByVal UserInput)
         If UserInput.Name = "Exit" Then
             Bonzi.StopAll
             Bonzi.Play "Wave"
-            Bonzi.Speak "Hope to see you soon, " & name & "!"
+            ExitPhrases=Array("I hope to come back soon, " & name & ".", "I'll miss you, " & name & ".", "Until next time, " & name & ".", "Until next time my friend!", "It hurts me to say goodbye, " & name & ".")
+            Bonzi.Speak ExitPhrases(Int(Rnd*(Ubound(ExitPhrases)+1)))
             Set HideReq = Bonzi.Hide()
         End If
     End If
